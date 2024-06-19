@@ -1,0 +1,23 @@
+@import "tailwindcss/base";
+@import "@radix-ui/themes/styles.css";
+
+@tailwind components;
+@tailwind utilities;
+
+.radix-themes {
+  --cursor-button: pointer !important;
+  --cursor-checkbox: pointer !important;
+  --cursor-disabled: default !important;
+  --cursor-link: pointer !important;
+  --cursor-menu-item: pointer !important;
+  --cursor-radio: pointer !important;
+  --cursor-slider-thumb: grab !important;
+  --cursor-slider-thumb-active: grabbing !important;
+  --cursor-switch: pointer !important;
+  --default-font-family: var(--font-geist-sans) !important;
+}
+
+:where([data-sonner-toaster]) {
+  font-family: var( --default-font-family) !important;
+  font-weight: 600 !important;
+}

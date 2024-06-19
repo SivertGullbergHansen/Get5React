@@ -1,4 +1,12 @@
-# Get5-React
+# Get5React 🎮
+
+Welcome to Get5React, a React implementation of the popular Get5 Panel!
+
+Get5React is born out of a passion for both workplace LAN parties and Open Source Software. While it's still in its early stages, I'm excited to share its progress with you.
+
+## Demo 🖥️
+
+_(Coming soon!)_
 
 ## Features ✨
 
@@ -13,7 +21,7 @@
 - [ ] **Team Management:** Create and manage teams.
 - [ ] **Match Tracking:** Track ongoing and past matches.
 - [ ] **Map Management:** Manage available maps for matches.
-- [ ] _More coming soon_
+- [ ] _More coming soon!_
 
 If you're familiar with Get5, you'll recognize these core functionalities.
 

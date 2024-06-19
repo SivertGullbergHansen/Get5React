@@ -2,7 +2,7 @@
 
 Welcome to Get5React, a React implementation of the popular Get5 Panel!
 
-Written to be used in conjunction to [G5API](https://github.com/PhlexPlexico/G5API) by @PhlexPlexico.
+Written to be used in conjunction to [G5API](https://github.com/PhlexPlexico/G5API) by [@PhlexPlexico](https://github.com/PhlexPlexico).
 
 Get5React is born out of a passion for both workplace LAN parties and Open Source Software. While it's still in its early stages, I'm excited to share its progress with you.
 

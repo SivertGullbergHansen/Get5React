@@ -8,6 +8,7 @@
 
 ## Planned Features 🚀
 
+- [ ] **Docker Deployment:** For easy deployment.
 - [ ] **Player Registration:** Register players for matches.
 - [ ] **Team Management:** Create and manage teams.
 - [ ] **Match Tracking:** Track ongoing and past matches.

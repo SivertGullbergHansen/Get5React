@@ -6,6 +6,12 @@ Written to be used in conjunction to [G5API](https://github.com/PhlexPlexico/G5A
 
 Get5React is born out of a passion for both workplace LAN parties and Open Source Software. While it's still in its early stages, I'm excited to share its progress with you.
 
+## Roadmap 🚙
+
+- [ ] **Mirror G5V:** To ensure we use the API to its full extent and include all G5V features.
+- [ ] **Split code into multiple packages:** To improve human readability and project structure, allowing for further development.
+- [ ] **Refactor code:** optimize, modernize, improve code.
+
 ## Demo 🖥️
 
 _(Coming soon!)_

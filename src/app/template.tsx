@@ -14,7 +14,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!localStorage.getItem("usersExist"))
       // Check if users exist
-      axios.get("/api/users").then((res) => {
+      axios.get("/api/users?count=true").then((res) => {
         if (res.data.usersCount === 0) {
           localStorage.setItem("usersExist", "false");
           setDoesUsersExist(false);
@@ -34,7 +34,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
     <Flex align="center" justify="center" width="100dvw" height="100dvh">
       {doesUsersExist === true && (
         <Flex
-          gap="24px"
+          gap="4"
           width="100%"
           style={{
             padding: "24px",

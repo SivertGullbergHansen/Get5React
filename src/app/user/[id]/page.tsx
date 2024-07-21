@@ -88,7 +88,6 @@ export default function Page({ params }: { params: { id: string } }) {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
             gap: "12px",
-            justifyContent: "center",
           }}
         >
           <StatCard label="ELO Rating" value="1600" />
@@ -109,7 +108,6 @@ export default function Page({ params }: { params: { id: string } }) {
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
               gap: "12px",
-              justifyContent: "center",
             }}
           >
             <StatCard label="Dust 2" value="64%" />

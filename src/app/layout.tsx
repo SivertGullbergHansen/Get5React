@@ -6,6 +6,8 @@ import { Theme } from "@radix-ui/themes";
 import { GeistSans } from "geist/font/sans";
 import { Toaster } from "sonner";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Get5React",
   icons: {

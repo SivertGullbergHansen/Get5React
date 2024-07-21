@@ -72,8 +72,9 @@ export function Navbar() {
                             size="2"
                           />
                           <Text
+                            wrap="nowrap"
                             size="2"
-                            style={{ flexGrow: 1, textWrap: "nowrap" }}
+                            style={{ flexGrow: 1 }}
                             truncate
                           >
                             {profile.personaname}

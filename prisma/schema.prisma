@@ -24,8 +24,9 @@ model User {
   avatar  String
 
   // Team stuff
-  teamId Int?
-  Team   Team? @relation(fields: [teamId], references: [id])
+  teamId    Int?
+  Team      Team?       @relation(fields: [teamId], references: [id])
+  UserStats UserStats[]
 }
 
 model Team {
@@ -37,8 +38,26 @@ model Team {
 }
 
 model Map {
-  id           Int    @id @default(autoincrement())
+  id           Int         @id @default(autoincrement())
   display_name String
   data_name    String
   preview      String
+  UserStats    UserStats[]
+}
+
+model UserStats {
+  id        Int  @id @default(autoincrement())
+  steamID   Int
+  user      User @relation(fields: [steamID], references: [id])
+  kills     Int
+  deaths    Int
+  assists   Int
+  headshots Int
+  wins      Int
+  losses    Int
+  rounds    Int
+  mvps      Int
+  score     Int
+  mapId     Int
+  map       Map  @relation(fields: [mapId], references: [id])
 }

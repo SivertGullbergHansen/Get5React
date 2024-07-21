@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import axios from "axios";
 import { NextRequest } from "next/server";
 
 const prisma = new PrismaClient();
@@ -13,6 +12,12 @@ export async function GET(req: NextRequest) {
   const user = await prisma.user.findUnique({
     where: {
       steamID: id,
+    },
+    select: {
+      steamID: true,
+      name: true,
+      avatar: true,
+      teamId: true,
     },
   });
 

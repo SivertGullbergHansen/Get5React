@@ -162,6 +162,23 @@ export function Navbar() {
               Servers
             </NavLink>
           </Flex>
+
+          {/* Admin */}
+          {profile?.isAdmin && (
+            <Flex
+              direction="column"
+              gap="4"
+              style={{
+                padding: "0 12px",
+              }}
+            >
+              <Heading size="3">Admin</Heading>
+              <NavLink href="/admin/maps">
+                <BsHouseFill />
+                Maps
+              </NavLink>
+            </Flex>
+          )}
         </Flex>
       </Card>
     </Flex>

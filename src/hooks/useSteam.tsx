@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 
 function useSteam() {
   const session = useSession();
-  const [steam, setSteam] = useState<SteamProfile | null>(null);
+  const [steam, setSteam] = useState<
+    (SteamProfile & { isAdmin: boolean }) | null
+  >(null);
 
   useEffect(() => {
     if (steam === null && session.data) {
-      const data: SteamProfile = (session.data.user as any).steam;
+      const data = (session.data.user as any).steam;
       setSteam(data);
     }
   }, [session.data, steam]);
@@ -24,6 +26,7 @@ function useSteam() {
       });
     },
     isLoading: session.status === "loading",
+    status: session.status,
   };
 }
 

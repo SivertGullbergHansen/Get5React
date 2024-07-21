@@ -25,16 +25,20 @@ async function registerUser(profile: SteamProfile) {
         avatar: profile.avatarfull,
       },
     });
+
+    return isAdmin;
   } else {
     console.log("Updating user", profile.steamid);
 
-    await prisma.user.update({
+    const user = await prisma.user.update({
       where: { steamID: profile.steamid },
       data: {
         name: profile.personaname,
         avatar: profile.avatarfull,
       },
     });
+
+    return user.isAdmin;
   }
 }
 
@@ -53,22 +57,27 @@ async function handler(
       }),
     ],
     callbacks: {
-      jwt({ token, account, profile }) {
+      jwt: async ({ token, account, profile }) => {
         if (account?.provider === PROVIDER_ID) {
           token.steam = profile;
-        }
 
-        // Register user if they don't exist
-        if (profile) {
-          registerUser(profile as SteamProfile);
+          // Register user if they don't exist and get isAdmin status
+          if (profile) {
+            const isAdmin = await registerUser(profile as SteamProfile);
+            token.isAdmin = isAdmin; // Add isAdmin to the token
+          }
         }
 
         return token;
       },
-      session({ session, token }) {
+      session: ({ session, token }) => {
         if ("steam" in token) {
           // @ts-expect-error
-          session.user.steam = token.steam;
+          session.user.steam = {
+            // @ts-expect-error
+            ...token.steam,
+            isAdmin: token.isAdmin, // Add isAdmin to session.user.steam
+          };
         }
 
         return session;

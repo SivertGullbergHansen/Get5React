@@ -2,8 +2,9 @@
 
 import { Header } from "@/components/page/header";
 import { StatCard } from "@/components/user/statCard";
+import { UserType } from "@/types/user";
+import { getPlayerColor } from "@/utils/color";
 import { formatNumber } from "@/utils/numberFormat";
-import { User } from "@prisma/client";
 import {
   Avatar,
   Badge,
@@ -18,9 +19,7 @@ import {
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { BsListOl, BsSteam } from "react-icons/bs";
-
-type UserType = User & { position: number };
+import { BsListOl, BsStars, BsSteam } from "react-icons/bs";
 
 export default function Page({ params }: { params: { id: string } }) {
   const [user, setUser] = useState<UserType | undefined>(undefined);
@@ -47,9 +46,19 @@ export default function Page({ params }: { params: { id: string } }) {
                   alt="avatar"
                   size="4"
                 />
-                <Heading color={user.isAdmin ? accentColor : undefined}>
+                <Heading
+                  color={
+                    user.isAdmin ? accentColor : getPlayerColor(user.position)
+                  }
+                >
                   {user.name}
                 </Heading>
+
+                <Text weight="medium" size="3">
+                  <Flex gap="1" align="center">
+                    <BsStars /> {user.position}
+                  </Flex>
+                </Text>
               </Flex>
               {user.isAdmin && (
                 <Badge color={accentColor} size="1">
@@ -70,11 +79,6 @@ export default function Page({ params }: { params: { id: string } }) {
               )}
             </Flex>
             <Flex align="center" gap="5">
-              <Text weight="medium" size="3">
-                <Flex gap="1" align="center">
-                  <BsListOl /> {user.position}
-                </Flex>
-              </Text>
               <IconButton asChild size="3" variant="outline">
                 <Link
                   target="_blank"

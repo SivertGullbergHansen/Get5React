@@ -1,0 +1,22 @@
+"use client";
+
+import { useSteam } from "@/hooks/useSteam";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
+export default function Template({ children }: { children: React.ReactNode }) {
+  const { profile, status } = useSteam();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (
+      status === "unauthenticated" ||
+      (status === "authenticated" && profile && !profile.isAdmin)
+    )
+      router.push("/");
+  }, [profile, status, router]);
+
+  console.log(profile?.isAdmin);
+
+  return <div>{children}</div>;
+}

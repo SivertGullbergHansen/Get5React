@@ -1,7 +1,6 @@
 "use client";
 
 import { Header } from "@/components/page/header";
-import { User } from "@prisma/client";
 import {
   Flex,
   IconButton,
@@ -25,8 +24,8 @@ import { useEffect, useMemo, useState } from "react";
 import { BsCaretLeftFill, BsCaretRightFill } from "react-icons/bs";
 import Link from "next/link";
 import { formatNumber } from "@/utils/numberFormat";
-
-type UserType = User & { position: number };
+import { UserType } from "@/types/user";
+import { getPlayerColor } from "@/utils/color";
 
 export default function Leaderboards() {
   const [players, setPlayers] = useState<UserType[]>([]);
@@ -55,7 +54,12 @@ export default function Leaderboards() {
             }}
             href={`/players/${info.row.original.steamID}`}
           >
-            <RadixLink weight="medium">{info.getValue() as any}</RadixLink>
+            <RadixLink
+              color={getPlayerColor(info.row.original.position)}
+              weight="medium"
+            >
+              {info.getValue() as any}
+            </RadixLink>
           </Link>
         ),
         footer: (props) => props.column.id,

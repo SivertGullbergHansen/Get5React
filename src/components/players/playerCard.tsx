@@ -6,7 +6,7 @@ import React from "react";
 export function PlayerCard({ user }: { user: User }) {
   return (
     <Card asChild>
-      <Link href={`/user/${user.steamID}`}>
+      <Link href={`/players/${user.steamID}`}>
         <Flex minHeight="52px" gap="2" align="center">
           <Avatar
             size="4"

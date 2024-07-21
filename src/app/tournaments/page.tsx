@@ -2,10 +2,10 @@
 
 import { Flex, Heading } from "@radix-ui/themes";
 
-export default function Teams() {
+export default function Tournaments() {
   return (
     <Flex direction="column">
-      <Heading>Teams</Heading>
+      <Heading>Tournaments</Heading>
     </Flex>
   );
 }

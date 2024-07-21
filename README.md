@@ -6,8 +6,8 @@ Get5React is born out of a passion for both workplace LAN parties and Open Sourc
 
 ## Prerequisites 👌
 
-- [ ] **Docker:** To build the image
-- [ ] **Docker-compose:** To start the web-app + database
+- **Docker:** To build the image
+- **PostGresql:** Database to store information
 
 ## Getting Started 👟
 

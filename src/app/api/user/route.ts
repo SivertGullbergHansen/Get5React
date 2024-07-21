@@ -1,3 +1,4 @@
+import { addPositionsToUsers } from "@/utils/leaderboard";
 import { PrismaClient } from "@prisma/client";
 import { NextRequest } from "next/server";
 
@@ -13,13 +14,11 @@ export async function GET(req: NextRequest) {
     where: {
       steamID: id,
     },
-    select: {
-      steamID: true,
-      name: true,
-      avatar: true,
-      teamId: true,
-    },
   });
 
-  return Response.json({ user: user });
+  const users = await prisma.user.findMany();
+
+  const withPosition = addPositionsToUsers(users);
+
+  return Response.json({ user: withPosition.find((u) => u.steamID === id) });
 }

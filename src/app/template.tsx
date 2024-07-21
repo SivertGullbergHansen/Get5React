@@ -4,7 +4,7 @@ import { useSteam } from "@/hooks/useSteam";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Navbar } from "@/components/navbar/navbar";
-import { Flex } from "@radix-ui/themes";
+import { Flex, Grid } from "@radix-ui/themes";
 
 // Checks if any users exist. If no, show wizard
 export default function Template({ children }: { children: React.ReactNode }) {
@@ -14,7 +14,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!localStorage.getItem("usersExist"))
       // Check if users exist
-      axios.get("/api/users?count=true").then((res) => {
+      axios.get("/api/users?type=count").then((res) => {
         if (res.data.usersCount === 0) {
           localStorage.setItem("usersExist", "false");
           setDoesUsersExist(false);
@@ -33,7 +33,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <Flex align="center" justify="center" width="100dvw" height="100dvh">
       {doesUsersExist === true && (
-        <Flex
+        <Grid
           gap="4"
           width="100%"
           style={{
@@ -44,10 +44,11 @@ export default function Template({ children }: { children: React.ReactNode }) {
             maxWidth: "1400px",
             width: "100%",
           }}
+          columns="1fr 300px"
         >
           <div style={{ flexGrow: 1 }}>{children}</div>
           <Navbar />
-        </Flex>
+        </Grid>
       )}
       {doesUsersExist === false && <Wizard />}
     </Flex>

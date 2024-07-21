@@ -2,6 +2,7 @@
 
 import { Header } from "@/components/page/header";
 import { StatCard } from "@/components/user/statCard";
+import { formatNumber } from "@/utils/numberFormat";
 import { User } from "@prisma/client";
 import {
   Avatar,
@@ -19,8 +20,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BsListOl, BsSteam } from "react-icons/bs";
 
+type UserType = User & { position: number };
+
 export default function Page({ params }: { params: { id: string } }) {
-  const [user, setUser] = useState<User | undefined>(undefined);
+  const [user, setUser] = useState<UserType | undefined>(undefined);
   const accentColor = useThemeContext().accentColor;
 
   useEffect(() => {
@@ -69,7 +72,7 @@ export default function Page({ params }: { params: { id: string } }) {
             <Flex align="center" gap="5">
               <Text weight="medium" size="3">
                 <Flex gap="1" align="center">
-                  <BsListOl /> 3
+                  <BsListOl /> {user.position}
                 </Flex>
               </Text>
               <IconButton asChild size="3" variant="outline">
@@ -92,14 +95,14 @@ export default function Page({ params }: { params: { id: string } }) {
             gap: "16px",
           }}
         >
-          <StatCard label="ELO Rating" value="1600" />
+          <StatCard label="ELO Rating" value={formatNumber(user.rating)} />
           <StatCard label="Matches played" value="54" />
-          <StatCard label="Winrate" value="44%" />
+          <StatCard label="Winrate" value="44 %" />
           <StatCard label="Kills" value="493" />
           <StatCard label="Deaths" value="318" />
-          <StatCard label="Headshot %" value="64%" />
-          <StatCard label="Refrag attempt %" value="77%" />
-          <StatCard label="Refrag success %" value="48%" />
+          <StatCard label="Headshot %" value="64 %" />
+          <StatCard label="Refrag attempt %" value="77 %" />
+          <StatCard label="Refrag success %" value="48 %" />
         </div>
       )}
       {user && (
@@ -112,10 +115,10 @@ export default function Page({ params }: { params: { id: string } }) {
               gap: "16px",
             }}
           >
-            <StatCard label="Dust 2" value="64%" />
-            <StatCard label="Inferno" value="54%" />
-            <StatCard label="Mirage" value="44%" />
-            <StatCard label="Nuke" value="39%" />
+            <StatCard label="Dust 2" value="64 %" />
+            <StatCard label="Inferno" value="54 %" />
+            <StatCard label="Mirage" value="44 %" />
+            <StatCard label="Nuke" value="39 %" />
             <StatCard label="Overpass" value="N/A" />
             <StatCard label="Vertigo" value="N/A" />
             <StatCard label="Ancient" value="N/A" />

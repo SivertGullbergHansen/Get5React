@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "position" INTEGER NOT NULL DEFAULT 50;

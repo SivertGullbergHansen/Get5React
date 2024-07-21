@@ -17,6 +17,7 @@ import React from "react";
 import {
   BsCaretDownFill,
   BsHouseFill,
+  BsListOl,
   BsPeopleFill,
   BsPersonFill,
   BsServer,
@@ -88,7 +89,9 @@ export function Navbar() {
                       highContrast
                       size="3"
                     >
-                      <Link href={`/user/${profile.steamid}`}>My profile</Link>
+                      <Link href={`/players/${profile.steamid}`}>
+                        My profile
+                      </Link>
                     </Button>
                     <Button
                       style={{ justifyContent: "start" }}
@@ -134,6 +137,10 @@ export function Navbar() {
               <BsHouseFill />
               Home
             </NavLink>
+            <NavLink href="/tournaments">
+              <BsTrophyFill />
+              Tournaments
+            </NavLink>
             <NavLink href="/teams">
               <BsPeopleFill />
               Teams
@@ -143,7 +150,7 @@ export function Navbar() {
               Matches
             </NavLink>
             <NavLink href="/leaderboards">
-              <BsTrophyFill />
+              <BsListOl />
               Leaderboards
             </NavLink>
             <NavLink href="/players">

@@ -11,9 +11,10 @@ export function NavLink({
   href: string;
 }) {
   const pathname = usePathname();
+  const isActive = pathname.includes(href);
   return (
     <Button
-      color={pathname !== href ? "gray" : undefined}
+      color={(href !== "/" ? isActive : href === pathname) ? undefined : "gray"}
       asChild
       variant="ghost"
       radius="large"

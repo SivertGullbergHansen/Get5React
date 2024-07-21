@@ -1,5 +1,6 @@
 "use client";
 
+import { Header } from "@/components/page/header";
 import { StatCard } from "@/components/user/statCard";
 import { User } from "@prisma/client";
 import {
@@ -30,6 +31,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   return (
     <Flex direction="column" gap="4">
+      <Header>Player</Header>
       {user === null && <Text>User does not exist</Text>}
       {user && (
         <Card>
@@ -87,7 +89,7 @@ export default function Page({ params }: { params: { id: string } }) {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: "12px",
+            gap: "16px",
           }}
         >
           <StatCard label="ELO Rating" value="1600" />
@@ -107,7 +109,7 @@ export default function Page({ params }: { params: { id: string } }) {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "12px",
+              gap: "16px",
             }}
           >
             <StatCard label="Dust 2" value="64%" />

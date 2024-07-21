@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider      = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-3.0.x"]
@@ -12,43 +9,39 @@ datasource db {
 }
 
 model User {
-  // User stuff
-  id           Int     @id @default(autoincrement())
-  isAdmin      Boolean @default(false)
-  isBanned     Boolean @default(false)
+  id           Int         @id @default(autoincrement())
+  isAdmin      Boolean     @default(false)
+  isBanned     Boolean     @default(false)
   bannedReason String?
-
-  // Steam stuff
-  steamID String @unique
-  name    String
-  avatar  String
-
-  // Team stuff
-  teamId    Int?
-  Team      Team?       @relation(fields: [teamId], references: [id])
-  UserStats UserStats[]
+  steamID      String      @unique
+  name         String
+  avatar       String
+  teamId       Int?
+  Team         Team?       @relation(fields: [teamId], references: [id])
+  UserStats    UserStats[]
 }
 
 model Team {
   id      Int    @id @default(autoincrement())
-  ownerID String
-  name    String
+  ownerID String @unique
+  name    String @unique
   players User[]
   logo    String
 }
 
 model Map {
   id           Int         @id @default(autoincrement())
-  display_name String
-  data_name    String
+  display_name String      @unique
+  data_name    String      @unique
   preview      String
   UserStats    UserStats[]
 }
 
 model UserStats {
-  id        Int  @id @default(autoincrement())
-  steamID   Int
-  user      User @relation(fields: [steamID], references: [id])
+  id        Int    @id @default(autoincrement())
+  steamID   String
+  userId    Int
+  user      User   @relation(fields: [userId], references: [id])
   kills     Int
   deaths    Int
   assists   Int
@@ -59,5 +52,7 @@ model UserStats {
   mvps      Int
   score     Int
   mapId     Int
-  map       Map  @relation(fields: [mapId], references: [id])
+  map       Map    @relation(fields: [mapId], references: [id])
+
+  @@unique([steamID, mapId]) // Ensures that each user has unique stats per map
 }

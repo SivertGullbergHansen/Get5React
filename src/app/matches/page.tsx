@@ -1,11 +1,12 @@
 "use client";
 
-import { Flex, Heading } from "@radix-ui/themes";
+import { Header } from "@/components/page/header";
+import { Flex } from "@radix-ui/themes";
 
 export default function Matches() {
   return (
     <Flex direction="column">
-      <Heading>Matches</Heading>
+      <Header>Matches</Header>
     </Flex>
   );
 }

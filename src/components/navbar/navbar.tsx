@@ -17,7 +17,6 @@ import React from "react";
 import {
   BsCaretDownFill,
   BsHouseFill,
-  BsPeople,
   BsPeopleFill,
   BsPersonFill,
   BsServer,
@@ -30,27 +29,16 @@ import { NavLink } from "./navlink";
 export function Navbar() {
   const { profile, signIn, signOut, isLoading } = useSteam();
   return (
-    <div
-      style={{
-        display: "grid",
-        width: "300px",
-      }}
-    >
+    <Flex width="300px" direction="column" gap="4">
+      <Flex height="36px" justify="center" align="center" gap="1">
+        <Image alt="" aria-hidden src="/logo.svg" width={36} height={36} />
+        <Heading size="7" as="h1">
+          Get5React
+        </Heading>
+      </Flex>
+
       <Card>
-        <Flex direction="column" height="100%" gap="4">
-          <Flex justify="center" align="center" gap="1">
-            <Image alt="" aria-hidden src="/logo.svg" width={36} height={36} />
-            <Heading size="7" as="h1">
-              Get5React
-            </Heading>
-          </Flex>
-
-          <Separator
-            style={{
-              width: "100%",
-            }}
-          />
-
+        <Flex direction="column" gap="4">
           {/* Profile */}
           <Flex height="48px" align="center" justify="center" gap="3">
             {profile ? (
@@ -169,6 +157,6 @@ export function Navbar() {
           </Flex>
         </Flex>
       </Card>
-    </div>
+    </Flex>
   );
 }

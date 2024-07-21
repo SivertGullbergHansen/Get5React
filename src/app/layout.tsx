@@ -28,6 +28,7 @@ export default function RootLayout({
           grayColor="slate"
           radius="full"
           appearance="dark"
+          hasBackground={false}
         >
           <NextAuthSessionProvider>
             {children}

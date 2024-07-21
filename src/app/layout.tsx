@@ -21,7 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={GeistSans.className}>
       <body>
-        <Theme accentColor="violet" radius="full" appearance="dark">
+        <Theme
+          accentColor="mint"
+          grayColor="slate"
+          radius="full"
+          appearance="dark"
+        >
           <NextAuthSessionProvider>
             {children}
             <Toaster richColors pauseWhenPageIsHidden />

@@ -13,8 +13,10 @@ datasource db {
 
 model User {
   // User stuff
-  id      Int     @id @default(autoincrement())
-  isAdmin Boolean @default(false)
+  id           Int     @id @default(autoincrement())
+  isAdmin      Boolean @default(false)
+  isBanned     Boolean @default(false)
+  bannedReason String?
 
   // Steam stuff
   steamID String @unique

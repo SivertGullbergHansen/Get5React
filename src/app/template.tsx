@@ -31,14 +31,18 @@ export default function Template({ children }: { children: React.ReactNode }) {
   }, [profile]);
 
   return (
-    <>
+    <Flex align="center" justify="center" width="100dvw" height="100dvh">
       {doesUsersExist === true && (
         <Flex
           gap="24px"
-          height="100dvh"
-          width="100vw"
+          width="100%"
           style={{
             padding: "24px",
+            maxHeight: "900px",
+            height: "100%",
+            minHeight: "auto",
+            maxWidth: "1400px",
+            width: "100%",
           }}
         >
           <div style={{ flexGrow: 1 }}>{children}</div>
@@ -46,6 +50,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
         </Flex>
       )}
       {doesUsersExist === false && <Wizard />}
-    </>
+    </Flex>
   );
 }

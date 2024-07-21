@@ -17,7 +17,9 @@ import React from "react";
 import {
   BsCaretDownFill,
   BsHouseFill,
+  BsPeople,
   BsPeopleFill,
+  BsPersonFill,
   BsServer,
   BsShieldFill,
   BsSteam,
@@ -154,6 +156,10 @@ export function Navbar() {
             <NavLink href="/leaderboards">
               <BsTrophyFill />
               Leaderboards
+            </NavLink>
+            <NavLink href="/players">
+              <BsPersonFill />
+              Players
             </NavLink>
             <NavLink href="/servers">
               <BsServer />

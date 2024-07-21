@@ -2,7 +2,6 @@
 
 import { Header } from "@/components/page/header";
 import { PlayerCard } from "@/components/players/playerCard";
-import { User } from "@prisma/client";
 import {
   Card,
   Flex,
@@ -18,6 +17,13 @@ import { BsCaretLeftFill, BsCaretRightFill } from "react-icons/bs";
 const usersPerPage = 24;
 const emptyArray = new Array(usersPerPage).fill(null);
 
+export interface User {
+  name: string;
+  steamID: string;
+  avatar: string;
+  teamId?: string;
+}
+
 export default function Players() {
   const [players, setPlayers] = useState<User[]>([]);
   const [displayedPlayers, setDisplayedPlayers] = useState<User[]>([]);
@@ -27,7 +33,8 @@ export default function Players() {
 
   useEffect(() => {
     axios.get("/api/users").then((res) => {
-      setPlayers(res.data.users);
+      const users: User[] = res.data.users;
+      setPlayers(users.sort((a, b) => a.name.localeCompare(b.name)));
     });
   }, []);
 
@@ -73,7 +80,7 @@ export default function Players() {
           <Flex justify="center" align="center" gap="3">
             <IconButton
               onClick={() => {
-                setPage((old) => old + 1);
+                setPage((old) => old - 1);
               }}
               disabled={page === 1}
               variant="soft"
@@ -83,7 +90,7 @@ export default function Players() {
             <Text>{page}</Text>
             <IconButton
               onClick={() => {
-                setPage((old) => old - 1);
+                setPage((old) => old + 1);
               }}
               disabled={displayedPlayers.length < usersPerPage}
               variant="soft"

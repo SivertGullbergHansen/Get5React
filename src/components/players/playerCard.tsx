@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { User } from "@/app/players/page";
 import { Avatar, Badge, Card, Flex, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import React from "react";

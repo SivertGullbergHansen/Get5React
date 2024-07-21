@@ -31,4 +31,12 @@ model Team {
   ownerID String
   name    String
   players User[]
+  logo    String
+}
+
+model Map {
+  id           Int    @id @default(autoincrement())
+  display_name String
+  data_name    String
+  preview      String
 }

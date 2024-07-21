@@ -2,10 +2,10 @@
 
 import { Flex, Heading } from "@radix-ui/themes";
 
-export default function Home() {
+export default function Leaderboards() {
   return (
     <Flex direction="column">
-      <Heading>Home</Heading>
+      <Heading>Leaderboards</Heading>
     </Flex>
   );
 }

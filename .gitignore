@@ -29,6 +29,9 @@ yarn-error.log*
 .env*.local
 .env
 
+# Config file
+config.ts
+
 # vercel
 .vercel
 
@@ -37,6 +40,3 @@ yarn-error.log*
 next-env.d.ts
 
 .DS_Store
-
-# Get5React
-settings.json

@@ -1,5 +1,5 @@
 import { SteamProfile } from "next-auth-steam";
-import { useSession } from "next-auth/react";
+import { signIn, useSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 function useSteam() {
@@ -13,7 +13,18 @@ function useSteam() {
     }
   }, [session.data, steam]);
 
-  return steam;
+  return {
+    profile: steam,
+    signIn: () => {
+      signIn("steam");
+    },
+    signOut: () => {
+      signOut({
+        callbackUrl: "/",
+      });
+    },
+    isLoading: session.status === "loading",
+  };
 }
 
 export { useSteam };

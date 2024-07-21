@@ -1,8 +1,4 @@
-@import "tailwindcss/base";
 @import "@radix-ui/themes/styles.css";
-
-@tailwind components;
-@tailwind utilities;
 
 .radix-themes {
   --cursor-button: pointer !important;
@@ -20,4 +16,9 @@
 :where([data-sonner-toaster]) {
   font-family: var( --default-font-family) !important;
   font-weight: 600 !important;
+}
+
+body,html {
+  margin: 0;
+  padding: 0;
 }

@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  // User stuff
+  id      Int     @id @default(autoincrement())
+  isAdmin Boolean @default(false)
+
+  // Steam stuff
+  steamID String @unique
+  name    String
+  avatar  String
+
+  // Team stuff
+  teamId Int?
+  Team   Team? @relation(fields: [teamId], references: [id])
+}
+
+model Team {
+  id      Int    @id @default(autoincrement())
+  ownerID String
+  name    String
+  players User[]
+}

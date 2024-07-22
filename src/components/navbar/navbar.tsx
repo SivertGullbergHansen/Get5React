@@ -159,13 +159,7 @@ export function Navbar() {
 
           {/* Admin */}
           {profile?.isAdmin && (
-            <Flex
-              direction="column"
-              gap="4"
-              style={{
-                padding: "0 12px",
-              }}
-            >
+            <Flex direction="column" gap="4">
               <Heading size="3">Admin</Heading>
               <NavLink href="/admin/maps">
                 <BsHouseFill />

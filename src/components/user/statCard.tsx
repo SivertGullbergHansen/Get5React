@@ -1,7 +1,13 @@
 import { Card, Flex, Heading } from "@radix-ui/themes";
 import React from "react";
 
-export function StatCard({ label, value }: { label: string; value: string }) {
+export function StatCard({
+  label,
+  value,
+}: {
+  label: React.ReactNode;
+  value: React.ReactNode;
+}) {
   return (
     <Card>
       <Flex direction="column" gap="2" justify="between" align="end">

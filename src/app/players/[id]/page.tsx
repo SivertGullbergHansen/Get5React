@@ -10,6 +10,7 @@ import { formatNumber } from "@/utils/numberFormat";
 import {
   Avatar,
   Badge,
+  Box,
   Card,
   Flex,
   Heading,
@@ -55,17 +56,6 @@ export default function Page({ params }: { params: { id: string } }) {
                 {user.name}
               </Heading>
 
-              <Tooltip content="Leaderboard position">
-                <Badge color={getPlayerColor(user.position) || "gray"} size="1">
-                  <Flex align="center" gap="1">
-                    <BsStars />
-                    {user.position}
-                  </Flex>
-                </Badge>
-              </Tooltip>
-
-              <RankCard rating={user.rating} />
-
               {user.isAdmin && (
                 <Tooltip content="This user manages the site">
                   <Badge color={accentColor} size="1">
@@ -85,6 +75,15 @@ export default function Page({ params }: { params: { id: string } }) {
                   <Badge size="1">{user.team.name}</Badge>
                 </Link>
               )}
+
+              <Tooltip content="Leaderboard position">
+                <Badge color={getPlayerColor(user.position) || "gray"} size="1">
+                  <Flex align="center" gap="1">
+                    <BsStars />
+                    {user.position}
+                  </Flex>
+                </Badge>
+              </Tooltip>
             </Flex>
             <Flex align="center" gap="5">
               <IconButton asChild size="3" variant="outline">
@@ -107,7 +106,10 @@ export default function Page({ params }: { params: { id: string } }) {
             gap: "16px",
           }}
         >
-          <StatCard label="ELO Rating" value={formatNumber(user.rating)} />
+          <StatCard
+            label="ELO Rating"
+            value={<RankCard rating={user.rating} scale={1.25} />}
+          />
           <StatCard label="Matches played" value="54" />
           <StatCard label="Winrate" value="44 %" />
           <StatCard label="Kills" value="493" />

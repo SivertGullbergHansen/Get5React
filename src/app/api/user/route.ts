@@ -14,11 +14,22 @@ export async function GET(req: NextRequest) {
     where: {
       steamID: id,
     },
+    include: {
+      userStats: true,
+      team: true,
+    },
   });
 
-  const users = await prisma.user.findMany();
+  const users = await prisma.user.findMany({
+    select: {
+      steamID: true,
+      rating: true,
+    },
+  });
 
   const withPosition = addPositionsToUsers(users);
 
-  return Response.json({ user: withPosition.find((u) => u.steamID === id) });
+  return Response.json({
+    user: { ...withPosition.find((u) => u.steamID === id), ...user },
+  });
 }

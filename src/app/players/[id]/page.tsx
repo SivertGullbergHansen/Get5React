@@ -1,7 +1,9 @@
 "use client";
 
 import { Header } from "@/components/page/header";
+import { RankCard } from "@/components/user/rank";
 import { StatCard } from "@/components/user/statCard";
+import { getUser } from "@/types/api";
 import { UserType } from "@/types/user";
 import { getPlayerColor } from "@/utils/color";
 import { formatNumber } from "@/utils/numberFormat";
@@ -22,7 +24,7 @@ import { useEffect, useState } from "react";
 import { BsStars, BsSteam } from "react-icons/bs";
 
 export default function Page({ params }: { params: { id: string } }) {
-  const [user, setUser] = useState<UserType | undefined>(undefined);
+  const [user, setUser] = useState<getUser | undefined>(undefined);
   const accentColor = useThemeContext().accentColor;
 
   useEffect(() => {
@@ -61,6 +63,9 @@ export default function Page({ params }: { params: { id: string } }) {
                   </Flex>
                 </Badge>
               </Tooltip>
+
+              <RankCard rating={user.rating} />
+
               {user.isAdmin && (
                 <Tooltip content="This user manages the site">
                   <Badge color={accentColor} size="1">
@@ -75,9 +80,9 @@ export default function Page({ params }: { params: { id: string } }) {
                   </Badge>
                 </Tooltip>
               )}
-              {user.teamId && (
+              {user.team && (
                 <Link href={`/team/${user.teamId}`}>
-                  <Badge size="1">Team name</Badge>
+                  <Badge size="1">{user.team.name}</Badge>
                 </Link>
               )}
             </Flex>

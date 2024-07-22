@@ -1,37 +1,17 @@
 import { TextProps } from "@radix-ui/themes";
 
-export function getPlayerColor(position: number): TextProps["color"] {
-  if (position === 1) {
-    return "amber";
-  }
+export function getPlayerColor(rating: number): TextProps["color"] {
+  if (rating < 4999) return "gray";
 
-  if (position === 2) {
-    return "cyan";
-  }
+  if (rating < 9999) return "cyan";
 
-  if (position === 3) {
-    return "teal";
-  }
+  if (rating < 14999) return "blue";
 
-  if (position < 11) {
-    return "violet";
-  }
+  if (rating < 19999) return "plum";
 
-  if (position < 21) {
-    return "blue";
-  }
+  if (rating < 24999) return "violet";
 
-  if (position < 31) {
-    return "green";
-  }
+  if (rating < 29999) return "crimson";
 
-  if (position < 41) {
-    return "yellow";
-  }
-
-  if (position < 51) {
-    return "orange";
-  }
-
-  return "gray";
+  return "amber";
 }

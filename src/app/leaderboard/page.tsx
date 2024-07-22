@@ -27,6 +27,7 @@ import Link from "next/link";
 import { formatNumber } from "@/utils/numberFormat";
 import { UserType } from "@/types/user";
 import { getPlayerColor } from "@/utils/color";
+import { RankCard } from "@/components/user/rank";
 
 export default function Leaderboard() {
   const [players, setPlayers] = useState<UserType[]>([]);
@@ -43,7 +44,7 @@ export default function Leaderboard() {
       {
         accessorKey: "rating",
         header: () => "Rating",
-        cell: (info) => <Text>{formatNumber(info.getValue() as any)}</Text>,
+        cell: (info) => <RankCard rating={info.getValue() as number} />,
         footer: (props) => props.column.id,
       },
       {
@@ -52,16 +53,12 @@ export default function Leaderboard() {
         cell: (info) => (
           <Link
             style={{
+              color: "white",
               textDecoration: "none",
             }}
             href={`/players/${info.row.original.steamID}`}
           >
-            <Text
-              color={getPlayerColor(info.row.original.position)}
-              weight="medium"
-            >
-              {info.getValue() as any}
-            </Text>
+            <Text weight="medium">{info.getValue() as any}</Text>
           </Link>
         ),
         footer: (props) => props.column.id,

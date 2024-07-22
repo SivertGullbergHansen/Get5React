@@ -31,8 +31,11 @@ _(Coming soon!)_
 - [ ] **Docker Deployment:** For easier deployment.
 - [ ] **Player Registration:** Register players for matches.
 - [ ] **Team Management:** Create and manage teams.
-- [ ] **Match Tracking:** Track ongoing and past matches.
+- [ ] **Match Tracking:** Track ongoing (real-time) and past matches.
 - [ ] **Map Management:** Manage available maps for matches.
+- [ ] **Player Rating:** Analyse players and generate ELO.
+- [ ] **Demo Parsing:** View match performance per player.
+- [ ] **Demo Player:** View match replays directly in your browser.
 - [ ] _More coming soon!_
 
 If you're familiar with Get5, you'll recognize these core functionalities.

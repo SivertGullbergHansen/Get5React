@@ -28,6 +28,10 @@ model Team {
   name    String @unique
   players User[]
   logo    String
+
+  Team1  Match[] @relation("Team1")
+  Team2  Match[] @relation("Team2")
+  Winner Match[] @relation("Winner")
 }
 
 model Map {
@@ -36,6 +40,7 @@ model Map {
   data_name    String      @unique
   preview      String
   UserStats    UserStats[]
+  Match        Match[]
 }
 
 model UserStats {
@@ -56,4 +61,29 @@ model UserStats {
   map       Map    @relation(fields: [mapId], references: [id])
 
   @@unique([steamID, mapId]) // Ensures that each user has unique stats per map
+}
+
+model Match {
+  id           Int         @id @default(autoincrement())
+  team1Id      Int
+  team1        Team        @relation("Team1", fields: [team1Id], references: [id])
+  team2Id      Int
+  team2        Team        @relation("Team2", fields: [team2Id], references: [id])
+  winnerId     Int
+  winner       Team        @relation("Winner", fields: [winnerId], references: [id])
+  mapId        Int
+  map          Map         @relation(fields: [mapId], references: [id])
+  team1Score   Int
+  team2Score   Int
+  date         DateTime
+  tournamentId Int?
+  Tournament   Tournament? @relation(fields: [tournamentId], references: [id])
+}
+
+model Tournament {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String
+  logo        String
+  matches     Match[]
 }

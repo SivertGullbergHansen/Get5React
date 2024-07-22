@@ -1,5 +1,3 @@
-import { UserType } from "@/types/user";
-
 import { TextProps } from "@radix-ui/themes";
 
 export function getPlayerColor(position: number): TextProps["color"] {
@@ -19,5 +17,21 @@ export function getPlayerColor(position: number): TextProps["color"] {
     return "violet";
   }
 
-  return undefined;
+  if (position < 21) {
+    return "blue";
+  }
+
+  if (position < 31) {
+    return "green";
+  }
+
+  if (position < 41) {
+    return "yellow";
+  }
+
+  if (position < 51) {
+    return "orange";
+  }
+
+  return "gray";
 }

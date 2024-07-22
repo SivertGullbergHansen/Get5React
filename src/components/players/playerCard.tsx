@@ -1,9 +1,11 @@
-import { User } from "@/app/players/page";
-import { Avatar, Badge, Card, Flex, Heading, Text } from "@radix-ui/themes";
+import { UserType } from "@/types/user";
+import { getPlayerColor } from "@/utils/color";
+import { Avatar, Badge, Card, Flex, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import React from "react";
+import { BsStars } from "react-icons/bs";
 
-export function PlayerCard({ user }: { user: User }) {
+export function PlayerCard({ user }: { user: UserType }) {
   return (
     <Card asChild>
       <Link href={`/players/${user.steamID}`}>
@@ -14,18 +16,14 @@ export function PlayerCard({ user }: { user: User }) {
             src={user.avatar}
             alt={user.name}
           />
-          <Flex
-            align="start"
-            justify="center"
-            flexGrow="1"
-            direction="column"
-            gap="2"
+          <Text
+            weight="medium"
+            color={getPlayerColor(user.position)}
+            truncate
+            wrap="nowrap"
           >
-            <Text truncate wrap="nowrap">
-              {user.name}
-            </Text>
-            {user.teamId && <Badge size="1">Team name</Badge>}
-          </Flex>
+            {user.name}
+          </Text>
         </Flex>
       </Link>
     </Card>

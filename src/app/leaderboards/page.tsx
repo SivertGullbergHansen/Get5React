@@ -6,7 +6,8 @@ import {
   IconButton,
   Text,
   Table,
-  Link as RadixLink,
+  Button,
+  TextField,
 } from "@radix-ui/themes";
 import { flexRender } from "@tanstack/react-table";
 import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
@@ -33,6 +34,7 @@ export default function Leaderboards() {
   const columns = useMemo<ColumnDef<UserType>[]>(
     () => [
       {
+        invertSorting: true,
         accessorKey: "position",
         header: () => "Rank",
         cell: (info) => <Text>{info.getValue() as any}</Text>,
@@ -54,12 +56,12 @@ export default function Leaderboards() {
             }}
             href={`/players/${info.row.original.steamID}`}
           >
-            <RadixLink
+            <Text
               color={getPlayerColor(info.row.original.position)}
               weight="medium"
             >
               {info.getValue() as any}
-            </RadixLink>
+            </Text>
           </Link>
         ),
         footer: (props) => props.column.id,
@@ -104,6 +106,16 @@ export default function Leaderboards() {
       <Flex align="center" justify="between">
         <Header>Leaderboards</Header>
         <Flex align="center" gap="4">
+          <TextField.Root
+            placeholder="Filter name"
+            onChange={(e) =>
+              table.getFlatHeaders()[2].column.setFilterValue(e.target.value)
+            }
+            value={
+              (table.getFlatHeaders()[2].column.getFilterValue() ??
+                "") as string
+            }
+          />
           <Flex justify="center" align="center" gap="3">
             <IconButton
               onClick={table.previousPage}
@@ -137,23 +149,23 @@ export default function Leaderboards() {
                   colSpan={header.colSpan}
                   width={`${header.getSize()}px` || "auto"}
                 >
-                  <div
-                    className={
-                      header.column.getCanSort()
-                        ? "cursor-pointer select-none"
-                        : ""
-                    }
+                  <Button
+                    variant="ghost"
+                    style={{ width: "100%", height: "100%" }}
                     onClick={header.column.getToggleSortingHandler()}
+                    radius="medium"
                   >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
-                    {{
-                      asc: <BsCaretUpFill />,
-                      desc: <BsCaretDownFill />,
-                    }[header.column.getIsSorted() as string] ?? null}
-                  </div>
+                    <Flex width="100%" align="center" justify="start" gap="1">
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                      {{
+                        asc: <BsCaretUpFill />,
+                        desc: <BsCaretDownFill />,
+                      }[header.column.getIsSorted() as string] ?? null}
+                    </Flex>
+                  </Button>
                 </Table.ColumnHeaderCell>
               ))}
             </Table.Row>

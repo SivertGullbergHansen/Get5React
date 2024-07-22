@@ -19,7 +19,7 @@ import {
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { BsListOl, BsStars, BsSteam } from "react-icons/bs";
+import { BsStars, BsSteam } from "react-icons/bs";
 
 export default function Page({ params }: { params: { id: string } }) {
   const [user, setUser] = useState<UserType | undefined>(undefined);
@@ -38,32 +38,35 @@ export default function Page({ params }: { params: { id: string } }) {
       {user && (
         <Card>
           <Flex align="center" justify="between">
-            <Flex align="center" gap="4">
-              <Flex align="center" gap="2">
-                <Avatar
-                  fallback={user.name[0]}
-                  src={user.avatar}
-                  alt="avatar"
-                  size="4"
-                />
-                <Heading
-                  color={
-                    user.isAdmin ? accentColor : getPlayerColor(user.position)
-                  }
-                >
-                  {user.name}
-                </Heading>
+            <Flex align="center" gap="2">
+              <Avatar
+                fallback={user.name[0]}
+                src={user.avatar}
+                alt="avatar"
+                size="4"
+              />
+              <Heading
+                color={
+                  user.isAdmin ? accentColor : getPlayerColor(user.position)
+                }
+              >
+                {user.name}
+              </Heading>
 
-                <Text weight="medium" size="3">
-                  <Flex gap="1" align="center">
-                    <BsStars /> {user.position}
+              <Tooltip content="Leaderboard position">
+                <Badge color={getPlayerColor(user.position) || "gray"} size="1">
+                  <Flex align="center" gap="1">
+                    <BsStars />
+                    {user.position}
                   </Flex>
-                </Text>
-              </Flex>
-              {user.isAdmin && (
-                <Badge color={accentColor} size="1">
-                  Administrator
                 </Badge>
+              </Tooltip>
+              {user.isAdmin && (
+                <Tooltip content="This user manages the site">
+                  <Badge color={accentColor} size="1">
+                    Administrator
+                  </Badge>
+                </Tooltip>
               )}
               {user.isBanned && user.bannedReason && (
                 <Tooltip content={user.bannedReason}>

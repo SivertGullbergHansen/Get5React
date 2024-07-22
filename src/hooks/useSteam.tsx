@@ -24,6 +24,7 @@ function useSteam() {
       signOut({
         callbackUrl: "/",
       });
+      localStorage.removeItem("usersExist");
     },
     isLoading: session.status === "loading",
     status: session.status,

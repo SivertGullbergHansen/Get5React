@@ -8,9 +8,11 @@
     "start": "next start",
     "lint": "next lint",
     "start:migrate": "prisma migrate deploy && npm run start",
-    "ru": "npx tsx registerUsers.mts"
+    "ru": "npx tsx registerUsers.mts",
+    "wipe": "npx prisma migrate reset"
   },
   "dependencies": {
+    "@laihoe/demoparser2": "^0.27.0",
     "@prisma/client": "^5.17.0",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-toast": "^1.1.5",

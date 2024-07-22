@@ -143,9 +143,9 @@ export function Navbar() {
               <BsShieldFill />
               Matches
             </NavLink>
-            <NavLink href="/leaderboards">
+            <NavLink href="/leaderboard">
               <BsListOl />
-              Leaderboards
+              Leaderboard
             </NavLink>
             <NavLink href="/players">
               <BsPersonFill />

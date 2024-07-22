@@ -28,7 +28,7 @@ import { formatNumber } from "@/utils/numberFormat";
 import { UserType } from "@/types/user";
 import { getPlayerColor } from "@/utils/color";
 
-export default function Leaderboards() {
+export default function Leaderboard() {
   const [players, setPlayers] = useState<UserType[]>([]);
 
   const columns = useMemo<ColumnDef<UserType>[]>(
@@ -104,7 +104,7 @@ export default function Leaderboards() {
   return (
     <Flex direction="column" gap="4" height="100%">
       <Flex align="center" justify="between">
-        <Header>Leaderboards</Header>
+        <Header>Leaderboard</Header>
         <Flex align="center" gap="4">
           <TextField.Root
             placeholder="Filter name"

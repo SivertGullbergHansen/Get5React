@@ -38,7 +38,7 @@ export function Navbar() {
         </Heading>
       </Flex>
 
-      <Card>
+      <Card style={{ padding: "24px" }}>
         <Flex direction="column" gap="4">
           {/* Profile */}
           <Flex height="48px" align="center" justify="center" gap="3">
@@ -125,13 +125,7 @@ export function Navbar() {
           />
 
           {/* Nav */}
-          <Flex
-            direction="column"
-            gap="4"
-            style={{
-              padding: "0 12px",
-            }}
-          >
+          <Flex direction="column" gap="4">
             <Heading size="3">Community</Heading>
             <NavLink href="/">
               <BsHouseFill />

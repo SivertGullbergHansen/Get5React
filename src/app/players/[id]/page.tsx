@@ -108,7 +108,7 @@ export default function Page({ params }: { params: { id: string } }) {
         >
           <StatCard
             label="ELO Rating"
-            value={<RankCard rating={user.rating} scale={1.25} />}
+            value={<RankCard rating={user.rating} />}
           />
           <StatCard label="Matches played" value="54" />
           <StatCard label="Winrate" value="44 %" />

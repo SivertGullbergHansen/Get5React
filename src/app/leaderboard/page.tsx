@@ -8,6 +8,9 @@ import {
   Table,
   Button,
   TextField,
+  Heading,
+  Card,
+  Skeleton,
 } from "@radix-ui/themes";
 import { flexRender } from "@tanstack/react-table";
 import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
@@ -24,13 +27,16 @@ import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { BsCaretLeftFill, BsCaretRightFill } from "react-icons/bs";
 import Link from "next/link";
-import { formatNumber } from "@/utils/numberFormat";
 import { UserType } from "@/types/user";
-import { getPlayerColor } from "@/utils/color";
 import { RankCard } from "@/components/user/rank";
+import { ResponsiveLine, Serie } from "@nivo/line";
 
 export default function Leaderboard() {
   const [players, setPlayers] = useState<UserType[]>([]);
+  const [rankDistribution, setRankDistribution] = useState<Serie>({
+    data: [],
+    id: "Rank distribution",
+  });
 
   const columns = useMemo<ColumnDef<UserType>[]>(
     () => [
@@ -77,6 +83,25 @@ export default function Leaderboard() {
     axios.get("/api/users").then((res) => {
       const users: UserType[] = res.data.users;
       setPlayers(users.sort((a, b) => a.position - b.position));
+
+      // Calculate rank distribution
+      const step = 1000;
+      const maxRating =
+        Math.ceil(Math.max(...users.map((user) => user.rating)) / step) * step;
+      const distribution = [];
+
+      for (let i = 0; i <= maxRating; i += step) {
+        distribution.push({
+          x: `${i}-${i + step}`,
+          y: users.filter((user) => user.rating >= i && user.rating < i + step)
+            .length,
+        });
+      }
+
+      setRankDistribution({
+        id: "Rank distribution",
+        data: distribution,
+      });
     });
   }, []);
 
@@ -99,7 +124,7 @@ export default function Leaderboard() {
   });
 
   return (
-    <Flex direction="column" gap="4" height="100%">
+    <Flex direction="column" gap="4" height="100%" pb="8">
       <Flex align="center" justify="between">
         <Header>Leaderboard</Header>
         <Flex align="center" gap="4">
@@ -180,6 +205,89 @@ export default function Leaderboard() {
           ))}
         </Table.Body>
       </Table.Root>
+
+      <Flex direction="column" gap="2">
+        <Heading>Rank distribution</Heading>
+        <Skeleton loading={players.length === 0}>
+          <Card>
+            <Flex height="512px">
+              <ResponsiveLine
+                theme={{
+                  grid: {
+                    line: {
+                      stroke: "var(--gray-4)",
+                    },
+                  },
+                  axis: {
+                    ticks: {
+                      text: {
+                        fill: "var(--gray-11)",
+                        fontWeight: 700,
+                      },
+                    },
+                    legend: {
+                      text: {
+                        fill: "var(--gray-11)",
+                        fontWeight: 700,
+                      },
+                    },
+                  },
+                }}
+                margin={{ top: 24, right: 32, bottom: 64, left: 48 }}
+                curve="monotoneX"
+                data={[rankDistribution]}
+                axisTop={null}
+                axisRight={null}
+                axisBottom={{
+                  tickSize: 5,
+                  tickPadding: 5,
+                  tickRotation: 0,
+                  legend: "Rating",
+                  legendOffset: 48,
+                  legendPosition: "middle",
+                  renderTick: (tick) => (
+                    <g transform={`translate(${tick.x},${tick.y + 16})`}>
+                      <text
+                        textAnchor="middle"
+                        style={{
+                          fill: "var(--gray-11)", // Change this to your desired text color
+                          fontSize: 10,
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: tick.value.split("-")[0],
+                        }}
+                      />
+                      <text
+                        y={16}
+                        textAnchor="middle"
+                        style={{
+                          fill: "var(--gray-11)", // Change this to your desired text color
+                          fontSize: 10,
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: tick.value.split("-")[1],
+                        }}
+                      />
+                    </g>
+                  ),
+                }}
+                axisLeft={{
+                  tickSize: 5,
+                  tickPadding: 5,
+                  tickRotation: 0,
+                  legend: "Players",
+                  legendOffset: -40,
+                  legendPosition: "middle",
+                }}
+                pointSize={10}
+                pointColor={{ theme: "background" }}
+                pointBorderWidth={2}
+                pointBorderColor={{ from: "serieColor" }}
+              />
+            </Flex>
+          </Card>
+        </Skeleton>
+      </Flex>
     </Flex>
   );
 }

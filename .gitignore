@@ -40,3 +40,4 @@ config.ts
 next-env.d.ts
 
 .DS_Store
+tools/randomSteamIDs.json

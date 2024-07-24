@@ -1,3 +1,5 @@
+import humanizeDuration from "humanize-duration";
+
 export function generateNormalDistribution(
   mean: number,
   stdDev: number,
@@ -33,8 +35,6 @@ const getPageMembers = (url: string, page = 1): Promise<any> =>
       url += "/memberslistxml/?xml=1&p=" + page;
     }
 
-    consola.info(`Fetching page ${url}...`);
-
     https
       .get(url, (res: any) => {
         let xml = "";
@@ -69,6 +69,8 @@ const getPageMembers = (url: string, page = 1): Promise<any> =>
       .on("error", reject);
   });
 
+const waitTime = 930000; // 15 minutes and 30 seconds
+
 export const getMembers = (url: string): Promise<any[]> =>
   new Promise(async (resolve, reject) => {
     try {
@@ -80,7 +82,17 @@ export const getMembers = (url: string): Promise<any[]> =>
 
       if (response.meta.totalPages >= 2) {
         for (let i = 2; i <= response.meta.totalPages; i++) {
-          await delay(1000); // Add delay here
+          consola.info(
+            `#${i}, ${Math.floor((i / response.meta.totalPages) * 1000) / 10}%`
+          );
+
+          if ([60, 120, 180, 240].includes(i)) {
+            consola.warn(
+              `Rate limit exceeded, waiting for ${humanizeDuration(waitTime)}`
+            );
+            await delay(waitTime);
+          }
+
           response = await getPageMembers(url, i);
           members = [...members, ...response.members];
         }

@@ -1,6 +1,6 @@
 "use client";
 
-import { Header } from "@/components/page/header";
+import { Header, RankCard, UserType } from "@/common";
 import {
   Flex,
   IconButton,
@@ -27,8 +27,6 @@ import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { BsCaretLeftFill, BsCaretRightFill } from "react-icons/bs";
 import Link from "next/link";
-import { UserType } from "@/types/user";
-import { RankCard } from "@/components/user/rank";
 import { ResponsiveLine, Serie } from "@nivo/line";
 
 export default function Leaderboard() {

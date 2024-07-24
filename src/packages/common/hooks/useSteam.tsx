@@ -1,3 +1,5 @@
+"use client";
+
 import { SteamProfile } from "next-auth-steam";
 import { signIn, useSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";

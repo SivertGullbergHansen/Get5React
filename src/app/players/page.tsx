@@ -1,7 +1,7 @@
 "use client";
 
-import { Header } from "@/components/page/header";
-import { PlayerCard } from "@/components/players/playerCard";
+import { Header } from "@/common";
+import { PlayerCard } from "@/packages/common/components/players/playerCard";
 import {
   Card,
   Flex,

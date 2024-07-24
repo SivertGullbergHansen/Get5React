@@ -1,11 +1,11 @@
 import React from "react";
-import { useSteam } from "@/hooks/useSteam";
+import { useSteam } from "@/common";
 import { Flex, Text, Button, Heading, Card } from "@radix-ui/themes";
 import { BsSteam } from "react-icons/bs";
 import Image from "next/image";
 
 export function Wizard() {
-  const { signIn, profile } = useSteam();
+  const { signIn } = useSteam();
   return (
     <div
       style={{

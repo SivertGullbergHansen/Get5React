@@ -1,6 +1,6 @@
 "use client";
 
-import { Header } from "@/components/page/header";
+import { Header } from "@/common";
 import { Flex } from "@radix-ui/themes";
 
 export default function Tournaments() {

@@ -1,4 +1,3 @@
-import { useSteam } from "@/hooks/useSteam";
 import {
   Avatar,
   Box,
@@ -26,6 +25,7 @@ import {
   BsTrophyFill,
 } from "react-icons/bs";
 import { NavLink } from "./navlink";
+import { useSteam } from "@/common";
 
 export function Navbar() {
   const { profile, signIn, signOut, isLoading } = useSteam();

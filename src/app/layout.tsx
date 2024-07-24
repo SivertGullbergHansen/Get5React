@@ -1,6 +1,6 @@
 import "../style/globals.css";
 import "@radix-ui/themes/styles.css";
-import NextAuthSessionProvider from "@/providers/SessionProvider";
+import { NextAuthSessionProvider } from "@/common";
 import { Metadata } from "next";
 import { Theme } from "@radix-ui/themes";
 import { GeistSans } from "geist/font/sans";

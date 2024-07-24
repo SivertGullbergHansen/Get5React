@@ -1,6 +1,6 @@
 "use client";
 
-import { Header } from "@/components/page/header";
+import { Header } from "@/common";
 import { Badge, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 
 export default function Home() {

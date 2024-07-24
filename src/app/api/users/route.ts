@@ -1,4 +1,4 @@
-import { addPositionsToUsers } from "@/utils/leaderboard";
+import { addPositionsToUsers } from "@/leaderboard";
 import { PrismaClient, User } from "@prisma/client";
 import { NextRequest } from "next/server";
 

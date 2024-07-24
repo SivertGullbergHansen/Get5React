@@ -1,11 +1,10 @@
 "use client";
 
-import { Wizard } from "@/components/wizard/wizard";
-import { useSteam } from "@/hooks/useSteam";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Navbar } from "@/components/navbar/navbar";
 import { Flex, Grid } from "@radix-ui/themes";
+import { Navbar, useSteam } from "@/common";
+import { Wizard } from "@/wizard";
 
 // Checks if any users exist. If no, show wizard
 export default function Template({ children }: { children: React.ReactNode }) {

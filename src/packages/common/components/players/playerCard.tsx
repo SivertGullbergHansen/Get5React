@@ -1,9 +1,7 @@
-import { UserType } from "@/types/user";
-import { getPlayerColor } from "@/utils/color";
-import { Avatar, Badge, Card, Flex, Text } from "@radix-ui/themes";
+import { UserType, getPlayerColor } from "@/common";
+import { Avatar, Card, Flex, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import React from "react";
-import { BsStars } from "react-icons/bs";
 
 export function PlayerCard({ user }: { user: UserType }) {
   return (

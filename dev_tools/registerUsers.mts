@@ -4,6 +4,7 @@ import fs from "fs";
 import { PlayerSummariesResponse } from "./types";
 import { chunkArray, generateNormalDistribution } from "./utils";
 import consola from "consola";
+import { capName } from "@/common";
 
 const data = fs.readFileSync("./tools/randomSteamIDs.json", "utf8"); // should be an array of strings
 const steamIDs: string[] = JSON.parse(data);
@@ -44,13 +45,13 @@ async function processSteamIDs(steamIDs: string[]) {
           },
           update: {
             steamID: player.steamid,
-            name: player.personaname,
+            name: capName(player.personaname),
             avatar: player.avatarfull,
             rating: randomRating,
           },
           create: {
             steamID: player.steamid,
-            name: player.personaname,
+            name: capName(player.personaname),
             avatar: player.avatarfull,
             rating: randomRating,
           },

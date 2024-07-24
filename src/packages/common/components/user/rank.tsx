@@ -1,6 +1,5 @@
-import { getPlayerColor } from "@/utils/color";
-import { formatNumber } from "@/utils/numberFormat";
-import { Box, Flex, Text } from "@radix-ui/themes";
+import { getPlayerColor, formatNumber } from "@/common";
+import { Flex, Text } from "@radix-ui/themes";
 import React from "react";
 import { BsStars } from "react-icons/bs";
 

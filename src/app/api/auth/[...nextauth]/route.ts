@@ -4,6 +4,7 @@ import { PROVIDER_ID } from "next-auth-steam";
 import NextAuth from "next-auth/next";
 import { PrismaClient } from "@prisma/client";
 import consola from "consola";
+import { capName } from "@/common";
 
 const prisma = new PrismaClient();
 
@@ -22,7 +23,7 @@ async function registerUser(profile: SteamProfile) {
       data: {
         steamID: profile.steamid,
         isAdmin,
-        name: profile.personaname,
+        name: capName(profile.personaname),
         avatar: profile.avatarfull,
       },
     });
@@ -34,7 +35,7 @@ async function registerUser(profile: SteamProfile) {
     const user = await prisma.user.update({
       where: { steamID: profile.steamid },
       data: {
-        name: profile.personaname,
+        name: capName(profile.personaname),
         avatar: profile.avatarfull,
       },
     });

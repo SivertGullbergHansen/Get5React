@@ -1,6 +1,6 @@
 "use client";
 
-import { useSteam } from "@/hooks/useSteam";
+import { useSteam } from "@/common";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 

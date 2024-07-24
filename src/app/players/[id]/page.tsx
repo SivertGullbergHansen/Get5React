@@ -1,12 +1,6 @@
 "use client";
 
-import { Header } from "@/components/page/header";
-import { RankCard } from "@/components/user/rank";
-import { StatCard } from "@/components/user/statCard";
-import { getUser } from "@/types/api";
-import { UserType } from "@/types/user";
-import { getPlayerColor } from "@/utils/color";
-import { formatNumber } from "@/utils/numberFormat";
+import { Header, RankCard, StatCard, getPlayerColor, getUser } from "@/common";
 import {
   Avatar,
   Badge,

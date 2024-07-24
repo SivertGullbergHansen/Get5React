@@ -3,6 +3,7 @@ import SteamProvider, { SteamProfile } from "next-auth-steam";
 import { PROVIDER_ID } from "next-auth-steam";
 import NextAuth from "next-auth/next";
 import { PrismaClient } from "@prisma/client";
+import consola from "consola";
 
 const prisma = new PrismaClient();
 
@@ -12,7 +13,7 @@ async function registerUser(profile: SteamProfile) {
   });
 
   if (!existingUser) {
-    console.log("Registering new user with id:", profile.steamid);
+    consola.info("Registering new user with id:", profile.steamid);
 
     const userCount = await prisma.user.count();
     const isAdmin = userCount === 0;
@@ -28,7 +29,7 @@ async function registerUser(profile: SteamProfile) {
 
     return isAdmin;
   } else {
-    console.log("Updating user", profile.steamid);
+    consola.info("Updating user", profile.steamid);
 
     const user = await prisma.user.update({
       where: { steamID: profile.steamid },

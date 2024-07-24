@@ -16,7 +16,5 @@ export default function Template({ children }: { children: React.ReactNode }) {
       router.push("/");
   }, [profile, status, router]);
 
-  console.log(profile?.isAdmin);
-
   return <div>{children}</div>;
 }

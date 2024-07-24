@@ -4,9 +4,9 @@ import fs from "fs";
 import { PlayerSummariesResponse } from "./types";
 import { chunkArray, generateNormalDistribution } from "./utils";
 import consola from "consola";
-import { capName } from "@/common";
+import { capName } from "../src/packages/common/utils/user";
 
-const data = fs.readFileSync("./tools/randomSteamIDs.json", "utf8"); // should be an array of strings
+const data = fs.readFileSync("./dev_tools/randomSteamIDs.json", "utf8"); // should be an array of strings
 const steamIDs: string[] = JSON.parse(data);
 
 const prisma = new PrismaClient();

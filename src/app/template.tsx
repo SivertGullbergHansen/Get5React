@@ -31,7 +31,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
   }, [profile]);
 
   return (
-    <Flex align="center" justify="center" width="100dvw" height="100dvh">
+    <Flex align="center" justify="center" width="100%" height="100dvh">
       {doesUsersExist === true && (
         <Grid
           gap="4"

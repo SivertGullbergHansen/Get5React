@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "start:migrate": "prisma migrate deploy && npm run start",
-    "ru": "npx tsx tools/registerUsers.mts",
+    "ru": "npx tsx dev_tools/registerUsers.mts",
     "wipe": "npx prisma migrate reset"
   },
   "dependencies": {

@@ -1,4 +1,4 @@
-# 🦝 Get5React
+<img src="gh/logo_text.png">
 
 Welcome to Get5React, a React-based implementation of the popular Get5 Panel!
 

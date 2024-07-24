@@ -25,6 +25,9 @@ export const tableColumns: ColumnDef<UserType>[] = [
         style={{
           color: "white",
           textDecoration: "none",
+          width: "100%",
+          height: "100%",
+          display: "block",
         }}
         href={`/players/${info.row.original.steamID}`}
       >

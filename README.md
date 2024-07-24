@@ -1,5 +1,7 @@
 <img src="gh/logo_text.png">
 
+-----
+
 Welcome to Get5React, a React-based implementation of the popular Get5 Panel!
 
 Get5React is created out of a passion for LAN parties and Open Source Software. While it's still in its early stages, I'm excited to share its progress with you.

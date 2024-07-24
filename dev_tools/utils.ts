@@ -23,6 +23,7 @@ export function chunkArray<T>(array: T[], chunkSize: number): T[][] {
   return chunks;
 }
 
+import consola from "consola";
 import https from "https";
 import { parseString } from "xml2js";
 
@@ -31,6 +32,8 @@ const getPageMembers = (url: string, page = 1): Promise<any> =>
     if (!url.includes("/memberslistxml/?xml=1")) {
       url += "/memberslistxml/?xml=1&p=" + page;
     }
+
+    consola.info(`Fetching page ${url}...`);
 
     https
       .get(url, (res: any) => {
@@ -72,8 +75,12 @@ export const getMembers = (url: string): Promise<any[]> =>
       let response = await getPageMembers(url, 1);
       let members = response.members;
 
+      const delay = (ms: number) =>
+        new Promise((resolve) => setTimeout(resolve, ms));
+
       if (response.meta.totalPages >= 2) {
         for (let i = 2; i <= response.meta.totalPages; i++) {
+          await delay(1000); // Add delay here
           response = await getPageMembers(url, i);
           members = [...members, ...response.members];
         }

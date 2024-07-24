@@ -1,1 +1,1 @@
-export const MAX_NAME_LENGTH = 32 as const;
+export const MAX_NAME_LENGTH = 16 as const;

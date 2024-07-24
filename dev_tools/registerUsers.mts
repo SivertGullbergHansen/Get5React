@@ -38,20 +38,22 @@ async function processSteamIDs(steamIDs: string[]) {
         const stdDev = 5000; // Standard deviation
         const maxValue = 35000; // Maximum rating value
         const randomRating = generateNormalDistribution(mean, stdDev, maxValue);
+        const name = capName(player.personaname);
 
+        consola.start(`${index}: Checking ${name} (${player.steamid})`);
         await prisma.user.upsert({
           where: {
             steamID: player.steamid,
           },
           update: {
             steamID: player.steamid,
-            name: capName(player.personaname),
+            name,
             avatar: player.avatarfull,
             rating: randomRating,
           },
           create: {
             steamID: player.steamid,
-            name: capName(player.personaname),
+            name,
             avatar: player.avatarfull,
             rating: randomRating,
           },

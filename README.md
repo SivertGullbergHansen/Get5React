@@ -1,6 +1,4 @@
-<img src="gh/logo_text.png">
-
------
+<h1><img src="gh/logo_text.png"></h1>
 
 Welcome to Get5React, a React-based implementation of the popular Get5 Panel!
 

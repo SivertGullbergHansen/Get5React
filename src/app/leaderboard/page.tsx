@@ -27,6 +27,7 @@ export default function Leaderboard() {
     data: [],
     id: "Rank distribution",
   });
+  const [highestNumber, setHighestNumber] = useState(50);
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
@@ -54,6 +55,8 @@ export default function Leaderboard() {
         id: "Rank distribution",
         data: getRatingGroups(users),
       });
+
+      setHighestNumber(getRatingGroups(users).sort((a, b) => b.y - a.y)[0].y);
     });
   }, []);
 
@@ -66,7 +69,10 @@ export default function Leaderboard() {
 
       <LeaderboardTable table={table} />
 
-      <PlayerDistribution rankDistribution={rankDistribution} />
+      <PlayerDistribution
+        highestUserAmount={highestNumber}
+        rankDistribution={rankDistribution}
+      />
     </Flex>
   );
 }

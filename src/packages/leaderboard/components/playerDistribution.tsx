@@ -6,8 +6,10 @@ import React from "react";
 
 export function PlayerDistribution({
   rankDistribution,
+  highestUserAmount,
 }: {
   rankDistribution: Serie;
+  highestUserAmount: number;
 }) {
   return (
     <Flex direction="column" gap="2">
@@ -16,30 +18,48 @@ export function PlayerDistribution({
         <Card>
           <Flex height="512px">
             <ResponsiveLine
+              curve="basis"
+              enableArea
+              areaOpacity={0.05}
+              colors={["var(--accent-11)"]}
+              data={[rankDistribution]}
+              margin={{ top: 16, right: 64, bottom: 72, left: 64 }}
+              enablePointLabel
+              pointLabelYOffset={-20}
+              pointSize={8}
+              pointColor={{ theme: "background" }}
+              pointBorderWidth={2}
+              pointBorderColor={{ from: "serieColor" }}
               theme={{
                 grid: {
                   line: {
-                    stroke: "var(--gray-4)",
+                    stroke: "var(--gray-5)",
                   },
+                },
+                text: {
+                  fill: "var(--gray-9)",
+                  fontWeight: 700,
                 },
                 axis: {
                   ticks: {
                     text: {
-                      fill: "var(--gray-11)",
+                      fill: "var(--gray-9)",
                       fontWeight: 700,
                     },
                   },
                   legend: {
                     text: {
-                      fill: "var(--gray-11)",
+                      fill: "var(--gray-10)",
                       fontWeight: 700,
                     },
                   },
                 },
               }}
-              margin={{ top: 24, right: 32, bottom: 64, left: 48 }}
-              curve="monotoneX"
-              data={[rankDistribution]}
+              yScale={{
+                type: "linear",
+                min: 0,
+                max: highestUserAmount + 50,
+              }}
               axisTop={null}
               axisRight={null}
               axisBottom={{
@@ -47,15 +67,16 @@ export function PlayerDistribution({
                 tickPadding: 5,
                 tickRotation: 0,
                 legend: "Rating",
-                legendOffset: 48,
+                legendOffset: 60,
                 legendPosition: "middle",
                 renderTick: (tick) => (
                   <g transform={`translate(${tick.x},${tick.y + 16})`}>
                     <text
+                      y={4}
                       textAnchor="middle"
                       style={{
-                        fill: "var(--gray-11)", // Change this to your desired text color
-                        fontSize: 10,
+                        fill: "var(--gray-9)", // Change this to your desired text color
+                        fontSize: 12,
                       }}
                       dangerouslySetInnerHTML={{
                         __html: tick.value.split("-")[0],
@@ -65,8 +86,18 @@ export function PlayerDistribution({
                       y={16}
                       textAnchor="middle"
                       style={{
-                        fill: "var(--gray-11)", // Change this to your desired text color
-                        fontSize: 10,
+                        fill: "var(--gray-9)", // Change this to your desired text color
+                        fontSize: 12,
+                      }}
+                    >
+                      -
+                    </text>
+                    <text
+                      y={28}
+                      textAnchor="middle"
+                      style={{
+                        fill: "var(--gray-9)", // Change this to your desired text color
+                        fontSize: 12,
                       }}
                       dangerouslySetInnerHTML={{
                         __html: tick.value.split("-")[1],
@@ -80,13 +111,9 @@ export function PlayerDistribution({
                 tickPadding: 5,
                 tickRotation: 0,
                 legend: "Players",
-                legendOffset: -40,
+                legendOffset: -48,
                 legendPosition: "middle",
               }}
-              pointSize={10}
-              pointColor={{ theme: "background" }}
-              pointBorderWidth={2}
-              pointBorderColor={{ from: "serieColor" }}
             />
           </Flex>
         </Card>

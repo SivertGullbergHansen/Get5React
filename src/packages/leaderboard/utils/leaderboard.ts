@@ -20,9 +20,9 @@ export function getRatingGroups(users: UserType[] | User[]) {
     Math.ceil(Math.max(...users.map((user) => user.rating)) / step) * step;
   const distribution = [];
 
-  for (let i = 0; i <= maxRating; i += step) {
+  for (let i = 0; i < maxRating; i += step) {
     distribution.push({
-      x: `${i}-${i + step}`,
+      x: `${i / 1000}K-${(i + step) / 1000}K`,
       y: users.filter((user) => user.rating >= i && user.rating < i + step)
         .length,
     });

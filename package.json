@@ -10,6 +10,7 @@
     "start:migrate": "prisma migrate deploy && npm run start",
     "ru": "npx tsx dev_tools/registerUsers.mts",
     "gs": "npx tsx dev_tools/getSteamIDsFromGroup.mts",
+    "gsru": "npx tsx dev_tools/getSteamIDsFromGroup.mts && npx tsx dev_tools/registerUsers.mts",
     "wipe": "npx prisma migrate reset"
   },
   "dependencies": {

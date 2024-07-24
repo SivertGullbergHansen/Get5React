@@ -3,6 +3,9 @@ import { getMembers } from "./utils";
 import fs from "fs";
 import consola from "consola";
 
+// Clear the console
+console.clear();
+
 // Create readline interface
 const rl = readline.createInterface({
   input: process.stdin,
@@ -10,7 +13,7 @@ const rl = readline.createInterface({
 });
 
 // Ask for the URL
-rl.question("Please enter the URL: ", (url) => {
+rl.question("Please enter a Steam Group URL: ", (url) => {
   getMembers(url)
     .then((members) => {
       const allMembers = members.flat();

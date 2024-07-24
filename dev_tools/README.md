@@ -14,13 +14,13 @@
 1. **Grab steam IDs:**
 
    ```sh
-   bun gs
+   bun gsru
    ```
 
-2. **Generate sample data and update db:**
+2. **Input a valid Steam Group URL:**
 
    ```sh
-   bun ru
+   Please enter a Steam Group URL: https://steamcommunity.com/groups/Blocklanders
    ```
 ## Contributions 🤝
 

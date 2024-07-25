@@ -22,6 +22,9 @@ async function processSteamIDs(steamIDs: string[]) {
   try {
     const chunks = chunkArray(steamIDs, 100);
 
+    const delay = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms));
+
     for (const chunk of chunks) {
       const response = await axios.get(
         `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${
@@ -34,8 +37,8 @@ async function processSteamIDs(steamIDs: string[]) {
 
       for (const player of players) {
         index++;
-        const mean = 10000; // Mean rating value
-        const stdDev = 5000; // Standard deviation
+        const mean = 8000; // Mean rating value
+        const stdDev = 7000; // Standard deviation
         const maxValue = 35000; // Maximum rating value
         const randomRating = generateNormalDistribution(mean, stdDev, maxValue);
         const name = capName(player.personaname);
@@ -60,6 +63,12 @@ async function processSteamIDs(steamIDs: string[]) {
         });
 
         consola.success(`${index}: ${player.personaname} processed`);
+
+        // Wait 15 minutes every 1,000 steamIDs
+        if (index % 1000 === 0) {
+          consola.info("Waiting 15 minutes");
+          await delay(930000);
+        }
       }
     }
   } catch (error: any) {

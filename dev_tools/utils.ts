@@ -86,7 +86,8 @@ export const getMembers = (url: string): Promise<any[]> =>
             `#${i}, ${Math.floor((i / response.meta.totalPages) * 1000) / 10}%`
           );
 
-          if ([60, 120, 180, 240].includes(i)) {
+          // Wait 15 minutes every 60 requests
+          if (i % 60 === 0) {
             consola.warn(
               `Rate limit exceeded, waiting for ${humanizeDuration(waitTime)}`
             );

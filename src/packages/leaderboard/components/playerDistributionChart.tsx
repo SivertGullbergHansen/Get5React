@@ -4,7 +4,7 @@ import { ResponsiveLine, Serie } from "@nivo/line";
 import { Card, Flex, Heading, Skeleton } from "@radix-ui/themes";
 import React from "react";
 
-export function PlayerDistribution({
+export function PlayerDistributionChart({
   rankDistribution,
   highestUserAmount,
 }: {

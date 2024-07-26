@@ -26,12 +26,13 @@ async function processSteamIDs(steamIDs: string[]) {
       new Promise((resolve) => setTimeout(resolve, ms));
 
     for (const chunk of chunks) {
+      await delay(1000); // Wait 1 second between requests
+
       const response = await axios.get(
         `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${
           process.env.STEAM_SECRET
         }&format=json&steamids=${chunk.join(",")}`
       );
-
       const players = (response.data as PlayerSummariesResponse).response
         .players;
 
@@ -61,7 +62,6 @@ async function processSteamIDs(steamIDs: string[]) {
             rating: randomRating,
           },
         });
-
         consola.success(`${index}: ${player.personaname} processed`);
 
         // Wait 15 minutes every 1,000 steamIDs

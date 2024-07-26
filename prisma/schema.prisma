@@ -59,6 +59,8 @@ model UserStats {
   score     Int
   mapId     Int
   map       Map    @relation(fields: [mapId], references: [id])
+  matchId   Int
+  match     Match  @relation(fields: [matchId], references: [id])
 
   @@unique([steamID, mapId]) // Ensures that each user has unique stats per map
 }
@@ -78,6 +80,7 @@ model Match {
   date         DateTime
   tournamentId Int?
   Tournament   Tournament? @relation(fields: [tournamentId], references: [id])
+  UserStats    UserStats[]
 }
 
 model Tournament {

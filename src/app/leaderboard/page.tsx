@@ -16,7 +16,7 @@ import { Serie } from "@nivo/line";
 import {
   LeaderboardTable,
   PageControls,
-  PlayerDistribution,
+  PlayerDistributionChart,
   getRatingGroups,
   tableColumns,
 } from "@/leaderboard";
@@ -69,7 +69,7 @@ export default function Leaderboard() {
 
       <LeaderboardTable table={table} />
 
-      <PlayerDistribution
+      <PlayerDistributionChart
         highestUserAmount={highestNumber}
         rankDistribution={rankDistribution}
       />

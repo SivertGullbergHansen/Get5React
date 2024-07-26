@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "dev_tools/registerUsers.mts"
+    "dev_tools/**/*.mts",
   ],
   "exclude": [
     "node_modules"

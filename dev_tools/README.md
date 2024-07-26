@@ -22,6 +22,7 @@
    ```sh
    Please enter a Steam Group URL: https://steamcommunity.com/groups/Blocklanders
    ```
+
 ## Contributions 🤝
 
 Contributions are highly welcome! Whether you're interested in coding, testing, or providing feedback, your help is greatly appreciated. Please fork the repository and submit pull requests.

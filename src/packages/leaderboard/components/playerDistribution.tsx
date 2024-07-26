@@ -58,7 +58,7 @@ export function PlayerDistribution({
               yScale={{
                 type: "linear",
                 min: 0,
-                max: highestUserAmount + 50,
+                max: highestUserAmount + highestUserAmount / 10,
               }}
               axisTop={null}
               axisRight={null}

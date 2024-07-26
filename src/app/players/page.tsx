@@ -1,7 +1,7 @@
 "use client";
 
-import { Header } from "@/common";
-import { PlayerCard } from "@/packages/common/components/players/playerCard";
+import { Header, UserType } from "@/common";
+import { PlayerCard } from "@/common";
 import {
   Card,
   Flex,
@@ -25,15 +25,15 @@ export interface User {
 }
 
 export default function Players() {
-  const [players, setPlayers] = useState<User[]>([]);
-  const [displayedPlayers, setDisplayedPlayers] = useState<User[]>([]);
+  const [players, setPlayers] = useState<UserType[]>([]);
+  const [displayedPlayers, setDisplayedPlayers] = useState<UserType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState("");
 
   useEffect(() => {
     axios.get("/api/users").then((res) => {
-      const users: User[] = res.data.users;
+      const users: UserType[] = res.data.users;
       setPlayers(users.sort((a, b) => a.name.localeCompare(b.name)));
     });
   }, []);

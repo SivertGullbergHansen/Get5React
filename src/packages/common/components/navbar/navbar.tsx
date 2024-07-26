@@ -147,10 +147,10 @@ export function Navbar() {
               <BsListOl />
               Leaderboard
             </NavLink>
-            <NavLink href="/players">
+            {/* <NavLink href="/players">
               <BsPersonFill />
               Players
-            </NavLink>
+            </NavLink> */}
             <NavLink href="/servers">
               <BsServer />
               Servers

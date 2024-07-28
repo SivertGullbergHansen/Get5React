@@ -25,7 +25,7 @@ export function Wizard() {
           justify="center"
         >
           <Flex direction="column" align="center" gap="1">
-            <Image alt="" aria-hidden src="/logo.svg" width={36} height={36} />
+            <Image alt="" aria-hidden src="/logo.svg" width={48} height={48} />
             <Heading size="7" as="h1">
               Get5React
             </Heading>

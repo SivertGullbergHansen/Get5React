@@ -19,7 +19,7 @@ model User {
   teamId       Int?
   team         Team?       @relation(fields: [teamId], references: [id])
   userStats    UserStats[]
-  rating       Int         @default(1000)
+  rating       Int         @default(6000)
 }
 
 model Team {

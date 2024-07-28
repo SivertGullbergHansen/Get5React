@@ -8,7 +8,7 @@ CREATE TABLE "User" (
     "name" TEXT NOT NULL,
     "avatar" TEXT NOT NULL,
     "teamId" INTEGER,
-    "rating" INTEGER NOT NULL DEFAULT 1000,
+    "rating" INTEGER NOT NULL DEFAULT 6000,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );

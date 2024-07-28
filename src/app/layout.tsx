@@ -25,10 +25,9 @@ export default function RootLayout({
       <body>
         <Theme
           accentColor="mint"
-          grayColor="slate"
           radius="full"
           appearance="dark"
-          hasBackground={false}
+          panelBackground="solid"
         >
           <NextAuthSessionProvider>
             {children}

@@ -21,6 +21,7 @@
 body,html {
   margin: 0;
   padding: 0;
+  background-color: #07090f;
 }
 
 .dark, .dark-theme, :is(.dark, .dark-theme) :where(.radix-themes:not(.light, .light-theme)) {

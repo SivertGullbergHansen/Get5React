@@ -16,7 +16,7 @@ import { Serie } from "@nivo/line";
 import {
   LeaderboardTable,
   PageControls,
-  PlayerDistributionChart,
+  PlayerDistributionGraph,
   getRatingGroups,
   tableColumns,
 } from "@/leaderboard";
@@ -49,6 +49,8 @@ export default function Leaderboard() {
   useEffect(() => {
     axios.get("/api/users").then((res) => {
       const users: UserType[] = res.data.users;
+      if (users.length === 0) return;
+
       setPlayers(users.sort((a, b) => a.position - b.position));
 
       setRankDistribution({
@@ -69,7 +71,7 @@ export default function Leaderboard() {
 
       <LeaderboardTable table={table} />
 
-      <PlayerDistributionChart
+      <PlayerDistributionGraph
         highestUserAmount={highestNumber}
         rankDistribution={rankDistribution}
       />

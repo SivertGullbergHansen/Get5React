@@ -1,5 +1,5 @@
 // Components
-export * from "./components/playerDistributionChart";
+export * from "./components/playerDistributionGraph";
 export * from "./components/leaderboardTable";
 export * from "./components/pageControlts";
 

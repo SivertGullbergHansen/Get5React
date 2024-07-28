@@ -4,7 +4,7 @@ import { ResponsiveLine, Serie } from "@nivo/line";
 import { Card, Flex, Heading, Skeleton } from "@radix-ui/themes";
 import React from "react";
 
-export function PlayerDistributionChart({
+export function PlayerDistributionGraph({
   rankDistribution,
   highestUserAmount,
 }: {
@@ -23,7 +23,7 @@ export function PlayerDistributionChart({
               areaOpacity={0.05}
               colors={["var(--accent-11)"]}
               data={[rankDistribution]}
-              margin={{ top: 16, right: 64, bottom: 72, left: 64 }}
+              margin={{ top: 16, right: 16, bottom: 72, left: 64 }}
               enablePointLabel
               pointLabelYOffset={-20}
               pointSize={8}

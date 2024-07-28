@@ -61,8 +61,8 @@ export function LeaderboardTable({ table }: { table: TableCore<UserType> }) {
         loading={table.getRowModel().rows.length === 0}
       >
         <Text weight="medium" size="1">
-          Showing {table.getState().pagination.pageSize} of{" "}
-          {table.getRowCount()} players
+          Showing {table.getRowModel().rows.length} of {table.getRowCount()}{" "}
+          players
         </Text>
       </Skeleton>
     </Flex>

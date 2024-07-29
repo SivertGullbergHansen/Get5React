@@ -75,6 +75,10 @@ If you're familiar with Get5, these features should be familiar.
    Set up your database schema using Prisma:
 
    ```sh
+   bunx prisma migrate deploy
+
+   # OR
+
    npx prisma migrate deploy
    ```
 

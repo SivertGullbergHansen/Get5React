@@ -2,6 +2,7 @@
 
 import { Header } from "@/common";
 import { Badge, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -9,7 +10,24 @@ export default function Home() {
       <Header>Home</Header>
 
       <Grid columns="2" gap="4" height="300px">
-        <Card></Card>
+        <Card
+          style={{
+            position: "relative",
+          }}
+        >
+          <Image
+            src="https://via.placeholder.com/534x300"
+            alt=""
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              inset: 0,
+            }}
+            width={534}
+            height={300}
+          />
+        </Card>
         <Flex direction="column" justify="between">
           <Flex direction="column" width="80%" gap="4">
             <Flex direction="column" gap="1">

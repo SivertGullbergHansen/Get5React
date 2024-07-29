@@ -29,9 +29,11 @@ model Team {
   players User[]
   logo    String
 
-  Team1  Match[] @relation("Team1")
-  Team2  Match[] @relation("Team2")
-  Winner Match[] @relation("Winner")
+  Team1        Match[]     @relation("Team1")
+  Team2        Match[]     @relation("Team2")
+  Winner       Match[]     @relation("Winner")
+  Tournament   Tournament? @relation(fields: [tournamentId], references: [id])
+  tournamentId Int?
 }
 
 model Map {
@@ -41,6 +43,8 @@ model Map {
   preview      String
   UserStats    UserStats[]
   Match        Match[]
+  Tournament   Tournament? @relation(fields: [tournamentId], references: [id])
+  tournamentId Int?
 }
 
 model UserStats {
@@ -84,9 +88,28 @@ model Match {
 }
 
 model Tournament {
-  id          Int     @id @default(autoincrement())
+  id          Int            @id @default(autoincrement())
   name        String
   description String
+  type        TournamentType @default(SingleElimination)
   logo        String
+  banner      String
   matches     Match[]
+  isActive    Boolean        @default(true)
+  isPublic    Boolean        @default(true)
+  isOpen      Boolean        @default(true)
+  minRating   Int
+  maxRating   Int
+  startDate   DateTime
+  endDate     DateTime
+  teams       Team[]
+  maxTeams    Int
+  maps        Map[]
+}
+
+enum TournamentType {
+  RoundRobin
+  SingleElimination
+  DoubleElimination
+  Swiss
 }

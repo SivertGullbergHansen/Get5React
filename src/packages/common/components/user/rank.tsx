@@ -3,6 +3,14 @@ import { Flex, Text } from "@radix-ui/themes";
 import React from "react";
 import { BsStars } from "react-icons/bs";
 
+export function RankIcon() {
+  return (
+    <Flex align="center" justify="center">
+      R <BsStars />
+    </Flex>
+  );
+}
+
 export function RankCard({ rating = 3000 }: { rating: number }) {
   const color = getPlayerColor(rating);
   return (
@@ -42,9 +50,7 @@ export function RankCard({ rating = 3000 }: { rating: number }) {
         }}
       >
         <Flex gap="1" align="center" justify="center">
-          <Flex align="center" justify="center">
-            R <BsStars />
-          </Flex>
+          <RankIcon />
           {formatNumber(rating, ",")}
         </Flex>
       </Text>

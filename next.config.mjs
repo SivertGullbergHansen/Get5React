@@ -7,7 +7,7 @@ const nextConfig = {
         hostname: "*.steamstatic.com",
         port: "",
         pathname: "/**",
-      },
+      }
     ],
   },
 };

@@ -16,7 +16,7 @@ const exampleTournaments: Tournament[] = [
     description:
       "Celebrate the legacy of Counter-Strike with Old But Gold, a tournament that brings together veteran players and classic strategies.",
     banner: "/refuse_banner.png",
-    logo: "https://via.placeholder.com/32",
+    logo: "",
     endDate: new Date(2024, 8, 18, 17, 0),
     isActive: true,
     startDate: new Date(2024, 8, 14, 17, 0),
@@ -34,7 +34,7 @@ const exampleTournaments: Tournament[] = [
     description:
       "Witness the ultimate test of nerves and skill in Clutch Kings Clash, where only the coolest and most calculated players will reign supreme.",
     banner: "/banner_example.png",
-    logo: "https://via.placeholder.com/32",
+    logo: "",
     endDate: new Date(2024, 8, 18, 17, 0),
     isActive: true,
     startDate: new Date(2024, 8, 14, 17, 0),
@@ -52,7 +52,7 @@ const exampleTournaments: Tournament[] = [
     description:
       "Dive into the fast-paced action of Operation Overdrive, where elite teams battle it out in a high-octane Counter-Strike showdown.",
     banner: "/banner_t.png",
-    logo: "https://via.placeholder.com/32",
+    logo: "",
     endDate: new Date(2024, 8, 18, 17, 0),
     isActive: true,
     startDate: new Date(2024, 8, 14, 17, 0),

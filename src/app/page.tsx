@@ -16,7 +16,7 @@ export default function Home() {
           }}
         >
           <Image
-            src="https://via.placeholder.com/534x300"
+            src=""
             alt=""
             style={{
               position: "absolute",

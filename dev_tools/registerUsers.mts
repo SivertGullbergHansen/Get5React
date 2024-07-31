@@ -39,7 +39,7 @@ async function processSteamIDs(steamIDs: string[]) {
       for (const player of players) {
         index++;
         const mean = 8000; // Mean rating value
-        const stdDev = 7000; // Standard deviation
+        const stdDev = 4000; // Standard deviation
         const maxValue = 35000; // Maximum rating value
         const randomRating = generateNormalDistribution(mean, stdDev, maxValue);
         const name = capName(player.personaname);

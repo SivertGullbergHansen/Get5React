@@ -46,7 +46,7 @@ async function registerUser(profile: SteamProfile) {
 
 async function handler(
   req: NextRequest,
-  ctx: { params: { nextauth: string[] } }
+  ctx: { params: { nextauth: string[] } },
 ) {
   return NextAuth(req, ctx, {
     providers: [
@@ -54,7 +54,7 @@ async function handler(
         clientSecret: process.env.STEAM_SECRET!,
         callbackUrl: new URL(
           `/api/auth/callback`,
-          process.env.NEXTAUTH_URL || "http://localhost:3000"
+          process.env.NEXTAUTH_URL || "http://localhost:3000",
         ),
       }),
     ],

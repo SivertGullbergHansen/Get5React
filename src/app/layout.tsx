@@ -1,9 +1,10 @@
+import "@fontsource/open-sans/latin.css";
+import "@fontsource/montserrat/latin.css";
 import "../style/globals.css";
 import "@radix-ui/themes/styles.css";
 import { NextAuthSessionProvider } from "@/common";
 import { Metadata } from "next";
 import { Theme } from "@radix-ui/themes";
-import { GeistSans } from "geist/font/sans";
 import { Toaster } from "sonner";
 
 export const dynamic = "force-dynamic";
@@ -21,10 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className}>
+    <html lang="en">
       <body>
         <Theme
-          accentColor="mint"
+          accentColor="jade"
           radius="full"
           appearance="dark"
           panelBackground="solid"

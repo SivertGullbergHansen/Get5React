@@ -10,25 +10,30 @@
   --cursor-slider-thumb: grab !important;
   --cursor-slider-thumb-active: grabbing !important;
   --cursor-switch: pointer !important;
-  --default-font-family: var(--font-geist-sans) !important;
+  --heading-font-family: "Open Sans" !important;
+  --default-font-family: "Montserrat" !important;
 }
 
 :where([data-sonner-toaster]) {
-  font-family: var( --default-font-family) !important;
+  font-family: var(--default-font-family) !important;
   font-weight: 600 !important;
 }
 
-body,html {
+body,
+html {
   margin: 0;
   padding: 0;
   background-color: #07090f;
 }
 
-.dark, .dark-theme, :is(.dark, .dark-theme) :where(.radix-themes:not(.light, .light-theme)) {
+.dark,
+.dark-theme,
+:is(.dark, .dark-theme) :where(.radix-themes:not(.light, .light-theme)) {
   --color-background: #07090f;
 }
 
-.dark, .dark-theme {
+.dark,
+.dark-theme {
   --gray-1: #07090f;
   --gray-2: #15171e;
   --gray-3: #1e212b;
@@ -55,7 +60,7 @@ body,html {
   --gray-a11: #e7eefebe;
   --gray-a12: #f5f8fef5;
 
-  --gray-contrast: #FFFFFF;
+  --gray-contrast: #ffffff;
   --gray-surface: rgba(0, 0, 0, 0.05);
   --gray-indicator: #696e7a;
   --gray-track: #696e7a;
@@ -63,7 +68,8 @@ body,html {
 
 @supports (color: color(display-p3 1 1 1)) {
   @media (color-gamut: p3) {
-    .dark, .dark-theme {
+    .dark,
+    .dark-theme {
       --gray-1: oklch(14% 0.014 268.5);
       --gray-2: oklch(20.7% 0.014 268.5);
       --gray-3: oklch(25% 0.02 268.5);
@@ -90,7 +96,7 @@ body,html {
       --gray-a11: color(display-p3 0.922 0.941 1 / 0.738);
       --gray-a12: color(display-p3 0.969 0.976 0.996 / 0.955);
 
-      --gray-contrast: #FFFFFF;
+      --gray-contrast: #ffffff;
       --gray-surface: color(display-p3 0 0 0 / 5%);
       --gray-indicator: oklch(53.7% 0.021 268.5);
       --gray-track: oklch(53.7% 0.021 268.5);

@@ -33,6 +33,7 @@ export function TournamentCard({
   return (
     <Card asChild>
       <Link href={`/tournaments/${id}`}>
+        {/* Banner */}
         <Inset clip="padding-box" side="top" pb="current">
           <Image
             src={banner}
@@ -47,28 +48,39 @@ export function TournamentCard({
             height={120}
           />
         </Inset>
+
+        {/* Open/Closed */}
+        <Flex position="absolute" top="2" right="2">
+          {!isActive ? (
+            <Badge variant="solid" color="red">
+              Ended
+            </Badge>
+          ) : (
+            <Badge variant="solid" color={isOpen ? "green" : "red"}>
+              {isOpen ? "Open" : "Closed"}
+            </Badge>
+          )}
+        </Flex>
+
+        {/* Main Content */}
         <Flex gap="4" direction="column">
-          <Flex direction="column">
-            <Flex gap="1" align="center">
+          <Flex gap="2" direction="column">
+            {/* Title + date */}
+            <Flex direction="column" gap="1">
               <Heading size="4">{name}</Heading>
-              {!isActive ? (
-                <Badge color="red">Ended</Badge>
-              ) : (
-                <Badge color={isOpen ? "green" : "red"}>
-                  {isOpen ? "Open" : "Closed"}
-                </Badge>
-              )}
+              <Text color="gray" size="1">
+                {formatDistance(startDate, new Date(), {
+                  addSuffix: true,
+                  includeSeconds: true,
+                })}
+              </Text>
             </Flex>
-            <Text color="gray" size="1">
-              {formatDistance(startDate, new Date(), {
-                addSuffix: true,
-                includeSeconds: true,
-              })}
-            </Text>
+
+            {/* Description */}
+            <Text size="1">{description}</Text>
           </Flex>
 
-          <Text size="1">{description}</Text>
-
+          {/* Tags */}
           <Flex align="center" gap="2">
             <Badge color="gray">{getTypeName(type)}</Badge>
             <Badge color="gray">{`${teams.length} / ${maxTeams} Teams`}</Badge>

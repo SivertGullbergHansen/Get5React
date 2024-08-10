@@ -41,7 +41,7 @@ export default function Players() {
   useEffect(() => {
     if (players.length > 0) {
       setDisplayedPlayers(
-        players.slice((page - 1) * usersPerPage, page * usersPerPage)
+        players.slice((page - 1) * usersPerPage, page * usersPerPage),
       );
       setIsLoading(false);
     }
@@ -53,13 +53,13 @@ export default function Players() {
         players.filter(
           (player) =>
             player.name.toLowerCase().includes(filter.toLowerCase()) ||
-            player.steamID.includes(filter)
-        )
+            player.steamID.includes(filter),
+        ),
       );
       setPage(1);
     } else if (players.length > 0) {
       setDisplayedPlayers(
-        players.slice((page - 1) * usersPerPage, page * usersPerPage)
+        players.slice((page - 1) * usersPerPage, page * usersPerPage),
       );
     }
   }, [filter]);

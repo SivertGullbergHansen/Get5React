@@ -9,7 +9,7 @@ export function updateTeamRatings(
   ratingB: number,
   scoreA: number,
   scoreB: number,
-  K: number = 32
+  K: number = 32,
 ): [number, number] {
   const expectedA = calculateExpectedScore(ratingA, ratingB);
   const expectedB = calculateExpectedScore(ratingB, ratingA);
@@ -24,7 +24,7 @@ export function updatePlayerRatings(
   teamA: Player[],
   teamB: Player[],
   scoreA: number,
-  scoreB: number
+  scoreB: number,
 ): void {
   const teamARating =
     teamA.reduce((sum, player) => sum + player.rating, 0) / teamA.length;
@@ -35,7 +35,7 @@ export function updatePlayerRatings(
     teamARating,
     teamBRating,
     scoreA,
-    scoreB
+    scoreB,
   );
 
   const teamARatingChange = newTeamARating - teamARating;
@@ -43,11 +43,11 @@ export function updatePlayerRatings(
 
   const totalPerformanceA = teamA.reduce(
     (sum, player) => sum + calculatePerformancePoints(player.stats),
-    0
+    0,
   );
   const totalPerformanceB = teamB.reduce(
     (sum, player) => sum + calculatePerformancePoints(player.stats),
-    0
+    0,
   );
 
   teamA.forEach((player) => {

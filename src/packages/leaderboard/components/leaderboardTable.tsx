@@ -30,7 +30,7 @@ export function LeaderboardTable({ table }: { table: TableCore<UserType> }) {
                       <Flex width="100%" align="center" justify="start" gap="1">
                         {flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                         {{
                           asc: <BsCaretUpFill />,

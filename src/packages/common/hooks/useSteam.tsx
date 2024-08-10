@@ -1,21 +1,14 @@
 "use client";
 
-import { SteamProfile } from "next-auth-steam";
 import { signIn, useSession, signOut } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 
 function useSteam() {
   const session = useSession();
-  const [steam, setSteam] = useState<
-    (SteamProfile & { isAdmin: boolean }) | null
-  >(null);
-
-  useEffect(() => {
-    if (steam === null && session.data) {
-      const data = (session.data.user as any).steam;
-      setSteam(data);
-    }
-  }, [session.data, steam]);
+  const steam = useMemo(
+    () => (session.data ? (session.data.user as any).steam : null),
+    [session.data]
+  );
 
   return {
     profile: steam,

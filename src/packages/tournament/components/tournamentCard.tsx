@@ -30,7 +30,12 @@ export function TournamentCard({
   const [typeFilter, setTypeFilter] = useState("");
 
   return (
-    <Card asChild>
+    <Card
+      asChild
+      style={{
+        userSelect: "none",
+      }}
+    >
       <Link href={`/tournaments/${id}`}>
         {/* Banner */}
         <Inset clip="padding-box" side="top" pb="current">

@@ -71,6 +71,8 @@ export function Carousel({
     setTimeout(() => {
       carouselRef.current?.children[childIndex]?.scrollIntoView({
         behavior: "smooth",
+        block: "nearest",
+        inline: "nearest",
       });
     }, 0);
   };

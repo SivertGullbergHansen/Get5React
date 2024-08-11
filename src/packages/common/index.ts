@@ -6,6 +6,7 @@ export * from "./components/user/rank";
 export * from "./components/user/statCard";
 export * from "./components/players/playerCard";
 export * from "./components/providerWrapper/SessionProvider";
+export * from "./components/carousel/carousel";
 
 // Hooks
 export * from "./hooks/useSteam";

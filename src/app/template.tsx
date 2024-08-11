@@ -43,7 +43,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
             maxWidth: "1400px",
             width: "100%",
           }}
-          columns="1fr 300px"
+          columns="1100px 300px"
         >
           <div style={{ flexGrow: 1 }}>{children}</div>
           <Navbar />

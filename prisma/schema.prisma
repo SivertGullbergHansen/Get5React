@@ -98,7 +98,6 @@ model Tournament {
   isActive    Boolean        @default(true)
   isPublic    Boolean        @default(true)
   isOpen      Boolean        @default(true)
-  minRating   Int
   maxRating   Int
   startDate   DateTime
   endDate     DateTime

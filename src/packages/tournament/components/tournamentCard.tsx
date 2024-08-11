@@ -24,7 +24,6 @@ export function TournamentCard({
   description,
   type,
   maxTeams,
-  minRating,
   maxRating,
 }: Tournament) {
   const [nameFilter, setNameFilter] = useState("");
@@ -37,14 +36,13 @@ export function TournamentCard({
         <Inset clip="padding-box" side="top" pb="current">
           <Image
             src={banner}
-            alt="Bold typography"
+            alt="Tournament Banner Display"
             style={{
               display: "block",
-              width: "100%",
               objectFit: "cover",
               objectPosition: "center",
             }}
-            width={400}
+            width={350}
             height={120}
           />
         </Inset>
@@ -63,7 +61,7 @@ export function TournamentCard({
         </Flex>
 
         {/* Main Content */}
-        <Flex gap="4" direction="column">
+        <Flex gap="4" direction="column" justify="between">
           <Flex gap="2" direction="column">
             {/* Title + date */}
             <Flex direction="column" gap="1">
@@ -84,11 +82,11 @@ export function TournamentCard({
           <Flex align="center" gap="2">
             <Badge color="gray">{getTypeName(type)}</Badge>
             <Badge color="gray">{`${teams.length} / ${maxTeams} Teams`}</Badge>
-            {minRating !== 0 && maxRating !== 0 && (
+            {maxRating !== 0 && (
               <Badge color={getPlayerColor(maxRating * 1000)}>
                 <Flex align="center" gap="1">
                   <RankIcon />
-                  {`${minRating}K - ${maxRating}K`}
+                  {`${maxRating}K`}
                 </Flex>
               </Badge>
             )}

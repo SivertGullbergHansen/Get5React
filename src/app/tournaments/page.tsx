@@ -31,7 +31,7 @@ function TournamentCategory({
       <Carousel showButtons>
         {data.slice(0, maxTournaments).map((tournament) => (
           <Flex key={tournament.id} minWidth="330px" maxWidth="330px">
-            <TournamentCard {...tournament} />
+            <TournamentCard data={tournament} />
           </Flex>
         ))}
       </Carousel>

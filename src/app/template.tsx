@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Flex, Grid } from "@radix-ui/themes";
+import { Flex, Grid, ScrollArea } from "@radix-ui/themes";
 import { Navbar, useSteam } from "@/common";
 import { Wizard } from "@/wizard";
 
@@ -31,25 +31,39 @@ export default function Template({ children }: { children: React.ReactNode }) {
   }, [profile]);
 
   return (
-    <Flex align="start" py="8" justify="center">
-      {doesUsersExist === true && (
-        <Grid
-          gap="4"
-          width="100%"
-          style={{
-            maxHeight: "900px",
-            height: "100%",
-            minHeight: "auto",
-            maxWidth: "1400px",
-            width: "100%",
-          }}
-          columns="1100px 300px"
-        >
-          <div style={{ flexGrow: 1 }}>{children}</div>
-          <Navbar />
-        </Grid>
-      )}
-      {doesUsersExist === false && <Wizard />}
-    </Flex>
+    <ScrollArea
+      style={{
+        height: "100%",
+        position: "absolute",
+        inset: "0",
+      }}
+      scrollbars="vertical"
+      type="always"
+    >
+      <Flex align="start" py={{ initial: "4", md: "8" }} justify="center">
+        {doesUsersExist === true && (
+          <Grid
+            gap="4"
+            height="100%"
+            width="100%"
+            maxWidth="1400px"
+            columns="1084px 300px"
+            align="stretch"
+            px="4"
+          >
+            <div
+              style={{
+                position: "relative",
+                height: "100%",
+              }}
+            >
+              {children}
+            </div>
+            <Navbar />
+          </Grid>
+        )}
+        {doesUsersExist === false && <Wizard />}
+      </Flex>
+    </ScrollArea>
   );
 }

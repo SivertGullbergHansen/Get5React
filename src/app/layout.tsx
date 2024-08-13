@@ -6,6 +6,7 @@ import { NextAuthSessionProvider } from "@/common";
 import { Metadata } from "next";
 import { Theme } from "@radix-ui/themes";
 import { Toaster } from "sonner";
+import { TournamentPreview } from "@/tournamentPreview";
 
 export const dynamic = "force-dynamic";
 
@@ -33,6 +34,7 @@ export default function RootLayout({
           <NextAuthSessionProvider>
             {children}
             <Toaster richColors pauseWhenPageIsHidden />
+            <TournamentPreview />
           </NextAuthSessionProvider>
         </Theme>
       </body>

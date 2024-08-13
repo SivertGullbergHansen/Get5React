@@ -98,25 +98,25 @@ export function Carousel({
       </Flex>
 
       {firstElementInView > 0 && (
-        <Flex position="absolute" left="-16px" height="100%" align="center">
+        <Flex position="absolute" left="-20px" height="100%" align="center">
           <IconButton
-            size="2"
+            size="3"
             variant="solid"
             onClick={() => scrollToChild(firstElementInView - 1)}
           >
-            <BsChevronLeft />
+            <BsChevronLeft height="100%" width="auto" />
           </IconButton>
         </Flex>
       )}
 
       {lastElementInView < children.length - 1 && (
-        <Flex position="absolute" right="-16px" height="100%" align="center">
+        <Flex position="absolute" right="-20px" height="100%" align="center">
           <IconButton
-            size="2"
+            size="3"
             variant="solid"
             onClick={() => scrollToChild(lastElementInView + 1)}
           >
-            <BsChevronRight />
+            <BsChevronRight height="100%" width="auto" />
           </IconButton>
         </Flex>
       )}

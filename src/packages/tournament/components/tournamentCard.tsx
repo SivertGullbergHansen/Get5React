@@ -3,31 +3,31 @@
 import { Prisma } from "@prisma/client";
 import { Badge, Card, Flex, Heading, Inset, Text } from "@radix-ui/themes";
 import Image from "next/image";
-import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { formatDistance } from "date-fns";
 import { getTypeName } from "../utils/name";
 import { RankIcon, getPlayerColor } from "@/common";
+import { useTournamentPreview } from "@/tournamentPreview";
 
 type Tournament = Prisma.TournamentGetPayload<{
   include: { teams: true };
 }>;
 
-export function TournamentCard({
-  id,
-  name,
-  banner,
-  isActive,
-  isOpen,
-  startDate,
-  teams,
-  description,
-  type,
-  maxTeams,
-  maxRating,
-}: Tournament) {
-  const [nameFilter, setNameFilter] = useState("");
-  const [typeFilter, setTypeFilter] = useState("");
+export function TournamentCard({ data }: { data: Tournament }) {
+  const { showTournamentPreview, setTournamentData } = useTournamentPreview();
+
+  const {
+    banner,
+    description,
+    isActive,
+    isOpen,
+    maxRating,
+    maxTeams,
+    name,
+    startDate,
+    teams,
+    type,
+  } = data;
 
   return (
     <Card
@@ -36,7 +36,12 @@ export function TournamentCard({
         userSelect: "none",
       }}
     >
-      <Link href={`/tournaments/${id}`}>
+      <button
+        onClick={() => {
+          setTournamentData(data);
+          showTournamentPreview();
+        }}
+      >
         {/* Banner */}
         <Inset clip="padding-box" side="top" pb="current">
           <Image
@@ -97,7 +102,7 @@ export function TournamentCard({
             )}
           </Flex>
         </Flex>
-      </Link>
+      </button>
     </Card>
   );
 }

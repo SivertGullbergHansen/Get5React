@@ -111,3 +111,7 @@ html {
 .hideScrollbar::-webkit-scrollbar { 
   display: none;  /* Safari and Chrome */
 }
+
+.rt-ScrollAreaViewport:focus-visible, .rt-ScrollAreaViewport:focus-visible {
+  outline: none;
+}

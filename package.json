@@ -44,7 +44,8 @@
     "react-singleton-hook": "^4.0.1",
     "sonner": "^1.5.0",
     "steamid": "^2.0.0",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "ts-rcon": "^1.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",

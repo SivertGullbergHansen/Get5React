@@ -1,5 +1,5 @@
-import { NextRequest } from "next/server";
-import { Map, PrismaClient } from "@prisma/client";
+import { NextRequest, NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 /**
@@ -14,6 +14,7 @@ const prisma = new PrismaClient();
  *       - in: query
  *         name: id
  *         required: true
+ *         example: 1
  *         schema:
  *           type: string
  *         description: The ID of the map to retrieve
@@ -46,28 +47,50 @@ const prisma = new PrismaClient();
  *                   type: string
  *               example:
  *                 error: "Invalid ID parameter"
+ *       404:
+ *         description: Map not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *               example:
+ *                 error: "Map not found"
  */
 export async function GET(req: NextRequest) {
   const id = req.nextUrl.searchParams.get("id");
+
   if (!id) {
-    return Response.json({ map: undefined });
+    return NextResponse.json(
+      { error: "Invalid ID parameter" },
+      { status: 400 }
+    );
   }
 
-  const map = await prisma.map.findFirst({
+  const map = await prisma.map.findUnique({
     where: {
-      data_name: id,
+      id: parseInt(id, 10),
     },
   });
 
-  return Response.json({ map: map });
-}
-
-function verifyMapData(mapData: Map) {
-  if (!mapData) {
-    return false;
+  if (!map) {
+    return NextResponse.json({ error: "Map not found" }, { status: 404 });
   }
 
-  return true;
+  return NextResponse.json({ map });
+}
+
+/**
+ * Verifies that the map data is valid.
+ * @param {object} mapData - The map data object to verify.
+ * @returns {boolean} - Returns true if valid, false otherwise.
+ */
+function verifyMapData(mapData: { data_name: string }) {
+  return (
+    typeof mapData.data_name === "string" && mapData.data_name.trim().length > 0
+  );
 }
 
 /**
@@ -123,15 +146,22 @@ function verifyMapData(mapData: Map) {
  *                 error: "Invalid map data"
  */
 export async function POST(req: NextRequest) {
-  const mapData = await req.json();
+  try {
+    const mapData = await req.json();
 
-  if (mapData && verifyMapData(mapData)) {
+    if (!verifyMapData(mapData)) {
+      return NextResponse.json({ error: "Invalid map data" }, { status: 400 });
+    }
+
     const map = await prisma.map.create({
       data: mapData,
     });
 
-    return Response.json({ map: map });
+    return NextResponse.json({ map });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "An error occurred while creating the map" },
+      { status: 500 }
+    );
   }
-
-  return Response.json({ map: undefined });
 }

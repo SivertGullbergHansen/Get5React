@@ -17,6 +17,7 @@
             "in": "query",
             "name": "id",
             "required": true,
+            "example": 1,
             "schema": {
               "type": "string"
             },
@@ -61,6 +62,24 @@
                   },
                   "example": {
                     "error": "Invalid ID parameter"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Map not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "Map not found"
                   }
                 }
               }

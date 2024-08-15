@@ -9,6 +9,9 @@
       "get": {
         "summary": "Retrieve a map by ID",
         "description": "Returns a map object based on the ID provided as a query parameter.",
+        "tags": [
+          "Map"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -68,6 +71,9 @@
       "post": {
         "summary": "Create a new map",
         "description": "Creates a new map object and stores it in the database.",
+        "tags": [
+          "Map"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -140,6 +146,9 @@
       "post": {
         "summary": "Execute an RCON command",
         "description": "This endpoint allows you to execute a command on the RCON server.",
+        "tags": [
+          "RCON"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -219,6 +228,9 @@
       "get": {
         "summary": "Get the status of the RCON server",
         "description": "This endpoint retrieves the current status of the RCON server.",
+        "tags": [
+          "RCON"
+        ],
         "responses": {
           "200": {
             "description": "The status of the RCON server",

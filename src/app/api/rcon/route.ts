@@ -8,6 +8,8 @@ import { NextRequest } from "next/server";
  *   post:
  *     summary: Execute an RCON command
  *     description: This endpoint allows you to execute a command on the RCON server.
+ *     tags:
+ *       - RCON
  *     requestBody:
  *       required: true
  *       content:

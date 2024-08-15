@@ -8,6 +8,8 @@ const prisma = new PrismaClient();
  *   get:
  *     summary: Retrieve a map by ID
  *     description: Returns a map object based on the ID provided as a query parameter.
+ *     tags:
+ *       - Map
  *     parameters:
  *       - in: query
  *         name: id
@@ -74,6 +76,8 @@ function verifyMapData(mapData: Map) {
  *   post:
  *     summary: Create a new map
  *     description: Creates a new map object and stores it in the database.
+ *     tags:
+ *       - Map
  *     requestBody:
  *       required: true
  *       content:

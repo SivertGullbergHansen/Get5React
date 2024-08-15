@@ -6,6 +6,8 @@ import { RconClient } from "@/api/rcon";
  *   get:
  *     summary: Get the status of the RCON server
  *     description: This endpoint retrieves the current status of the RCON server.
+ *     tags:
+ *       - RCON
  *     responses:
  *       200:
  *         description: The status of the RCON server

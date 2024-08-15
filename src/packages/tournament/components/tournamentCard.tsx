@@ -1,7 +1,15 @@
 "use client";
 
 import { Prisma } from "@prisma/client";
-import { Badge, Card, Flex, Heading, Inset, Text } from "@radix-ui/themes";
+import {
+  Badge,
+  Card,
+  Flex,
+  FlexProps,
+  Heading,
+  Inset,
+  Text,
+} from "@radix-ui/themes";
 import Image from "next/image";
 import React from "react";
 import { formatDistance } from "date-fns";
@@ -13,7 +21,13 @@ type Tournament = Prisma.TournamentGetPayload<{
   include: { teams: true };
 }>;
 
-export function TournamentCard({ data }: { data: Tournament }) {
+export function TournamentCard({
+  data,
+  props,
+}: {
+  data: Tournament;
+  props?: FlexProps & React.RefAttributes<HTMLDivElement>;
+}) {
   const { showTournamentPreview, setTournamentData } = useTournamentPreview();
 
   const {
@@ -30,79 +44,96 @@ export function TournamentCard({ data }: { data: Tournament }) {
   } = data;
 
   return (
-    <Card
-      asChild
-      style={{
-        userSelect: "none",
-      }}
+    <Flex
+      width="100%"
+      height="100%"
+      minWidth="330px"
+      maxWidth="330px"
+      {...props}
     >
-      <button
-        onClick={() => {
-          setTournamentData(data);
-          showTournamentPreview();
+      <Card
+        asChild
+        style={{
+          userSelect: "none",
+          padding: 0,
         }}
       >
-        {/* Banner */}
-        <Inset clip="padding-box" side="top" pb="current">
-          <Image
-            src={banner}
-            alt="Tournament Banner Display"
-            style={{
-              display: "block",
-              objectFit: "cover",
-              objectPosition: "center",
-            }}
-            width={350}
-            height={120}
-          />
-        </Inset>
+        <button
+          onClick={() => {
+            setTournamentData(data);
+            showTournamentPreview();
+          }}
+        >
+          <Flex direction="column" gap="2" height="100%" width="100%">
+            {/* Banner */}
+            <Image
+              draggable={false}
+              src={banner}
+              alt="Tournament Banner Display"
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+                width: "100%",
+                height: "120px",
+              }}
+              width={350}
+              height={120}
+            />
 
-        {/* Open/Closed */}
-        <Flex position="absolute" top="2" right="2">
-          {!isActive ? (
-            <Badge variant="solid" color="red">
-              Ended
-            </Badge>
-          ) : (
-            <Badge variant="solid" color={isOpen ? "green" : "red"}>
-              {isOpen ? "Open" : "Closed"}
-            </Badge>
-          )}
-        </Flex>
+            {/* Main Content */}
+            <Flex
+              gap="4"
+              direction="column"
+              justify="between"
+              flexGrow="1"
+              p="4"
+            >
+              <Flex gap="2" direction="column">
+                {/* Title + date */}
+                <Flex direction="column" gap="1">
+                  <Heading size="4">{name}</Heading>
+                  <Text color="gray" size="1">
+                    {formatDistance(startDate, new Date(), {
+                      addSuffix: true,
+                      includeSeconds: true,
+                    })}
+                  </Text>
+                </Flex>
 
-        {/* Main Content */}
-        <Flex gap="4" direction="column" justify="between">
-          <Flex gap="2" direction="column">
-            {/* Title + date */}
-            <Flex direction="column" gap="1">
-              <Heading size="4">{name}</Heading>
-              <Text color="gray" size="1">
-                {formatDistance(startDate, new Date(), {
-                  addSuffix: true,
-                  includeSeconds: true,
-                })}
-              </Text>
+                {/* Description */}
+                <Text size="1">{description}</Text>
+              </Flex>
+
+              {/* Tags */}
+              <Flex align="center" gap="2">
+                <Badge color="gray">{getTypeName(type)}</Badge>
+                <Badge color="gray">{`${teams.length} / ${maxTeams} Teams`}</Badge>
+                {maxRating !== 0 && (
+                  <Badge color={getPlayerColor(maxRating * 1000)}>
+                    <Flex align="center" gap="1">
+                      <RankIcon />
+                      {`${maxRating}K`}
+                    </Flex>
+                  </Badge>
+                )}
+              </Flex>
             </Flex>
 
-            {/* Description */}
-            <Text size="1">{description}</Text>
+            {/* Open/Closed */}
+            <Flex position="absolute" top="2" right="2">
+              {!isActive ? (
+                <Badge variant="solid" color="red">
+                  Ended
+                </Badge>
+              ) : (
+                <Badge variant="solid" color={isOpen ? "green" : "red"}>
+                  {isOpen ? "Open" : "Closed"}
+                </Badge>
+              )}
+            </Flex>
           </Flex>
-
-          {/* Tags */}
-          <Flex align="center" gap="2">
-            <Badge color="gray">{getTypeName(type)}</Badge>
-            <Badge color="gray">{`${teams.length} / ${maxTeams} Teams`}</Badge>
-            {maxRating !== 0 && (
-              <Badge color={getPlayerColor(maxRating * 1000)}>
-                <Flex align="center" gap="1">
-                  <RankIcon />
-                  {`${maxRating}K`}
-                </Flex>
-              </Badge>
-            )}
-          </Flex>
-        </Flex>
-      </button>
-    </Card>
+        </button>
+      </Card>
+    </Flex>
   );
 }

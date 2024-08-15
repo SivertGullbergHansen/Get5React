@@ -1,9 +1,10 @@
 "use client";
 
-import { Flex, IconButton } from "@radix-ui/themes";
+import { Flex, IconButton, ScrollArea } from "@radix-ui/themes";
 import React, { useEffect, useRef, useState } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useInViewport } from "react-in-viewport";
+import { useDraggable } from "react-use-draggable-scroll";
 
 function CarouselChild({
   children,
@@ -16,7 +17,7 @@ function CarouselChild({
 }) {
   const myRef = useRef<HTMLDivElement>(null);
   const { inViewport } = useInViewport(myRef, {
-    threshold: 0.5,
+    threshold: 0.9,
   });
 
   useEffect(() => {
@@ -24,7 +25,13 @@ function CarouselChild({
   }, [inViewport]);
 
   return (
-    <div style={{ scrollSnapAlign: "center" }} ref={myRef}>
+    <div
+      draggable={false}
+      style={{
+        padding: "1px",
+      }}
+      ref={myRef}
+    >
       {children}
     </div>
   );
@@ -43,10 +50,12 @@ export function Carousel({
   showPagination,
   showScrollbar,
 }: Props) {
-  const carouselRef = useRef<HTMLDivElement>(null);
   const [firstElementInView, setFirstElementInView] = useState(0);
   const [lastElementInView, setLastElementInView] = useState(0);
   const [childrenVisibility, setChildrenVisibility] = useState<boolean[]>([]);
+
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const { events } = useDraggable(carouselRef as any);
 
   function updateVisibleElements(index: number, isVisible: boolean) {
     const vis = childrenVisibility;
@@ -80,11 +89,17 @@ export function Carousel({
   return (
     <Flex position="relative">
       <Flex
-        className={showScrollbar ? "" : "hideScrollbar"}
+        className="hideScrollbar"
+        {...events}
         ref={carouselRef}
         gap="4"
-        overflowX="scroll"
-        style={{ borderRadius: "8px", scrollSnapType: "x mandatory" }}
+        align="stretch"
+        style={{
+          borderRadius: "8px",
+          overflowX: "scroll",
+          overflowY: "hidden",
+          cursor: "grab !important",
+        }}
       >
         {children.map((child, index) => (
           <CarouselChild
@@ -100,6 +115,7 @@ export function Carousel({
       {firstElementInView > 0 && (
         <Flex position="absolute" left="-20px" height="100%" align="center">
           <IconButton
+            tabIndex={-1}
             size="3"
             variant="solid"
             onClick={() => scrollToChild(firstElementInView - 1)}
@@ -112,6 +128,7 @@ export function Carousel({
       {lastElementInView < children.length - 1 && (
         <Flex position="absolute" right="-20px" height="100%" align="center">
           <IconButton
+            tabIndex={-1}
             size="3"
             variant="solid"
             onClick={() => scrollToChild(lastElementInView + 1)}

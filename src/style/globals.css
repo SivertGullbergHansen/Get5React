@@ -115,3 +115,8 @@ html {
 .rt-ScrollAreaViewport:focus-visible, .rt-ScrollAreaViewport:focus-visible {
   outline: none;
 }
+
+.rt-ScrollAreaViewport {
+  margin: -4px;
+  padding: 4px;
+}

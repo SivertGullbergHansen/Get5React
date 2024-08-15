@@ -13,7 +13,8 @@
     "ru": "npx tsx dev_tools/registerUsers.mts",
     "gs": "npx tsx dev_tools/getSteamIDsFromGroup.mts",
     "gsru": "npx tsx dev_tools/getSteamIDsFromGroup.mts && npx tsx dev_tools/registerUsers.mts",
-    "wipe": "npx prisma migrate reset"
+    "wipe": "npx prisma migrate reset",
+    "openapi": "npx tsx dev_tools/openapi.ts"
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.0.18",
@@ -25,8 +26,10 @@
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-toast": "^1.1.5",
     "@radix-ui/themes": "^3.0.5",
+    "@scalar/nextjs-api-reference": "^0.4.74",
     "@tanstack/react-table": "^8.19.3",
     "@types/humanize-duration": "^3.27.4",
+    "@types/swagger-jsdoc": "^6.0.4",
     "@types/xml2js": "^0.4.14",
     "axios": "^1.7.2",
     "consola": "^3.2.3",
@@ -44,6 +47,7 @@
     "react-singleton-hook": "^4.0.1",
     "sonner": "^1.5.0",
     "steamid": "^2.0.0",
+    "swagger-jsdoc": "^6.2.8",
     "ts-node": "^10.9.2",
     "ts-rcon": "^1.2.1"
   },
